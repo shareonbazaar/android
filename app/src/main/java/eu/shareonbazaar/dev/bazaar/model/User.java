@@ -1,4 +1,4 @@
-package com.android.ymittal.bazaar.model;
+package eu.shareonbazaar.dev.bazaar.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

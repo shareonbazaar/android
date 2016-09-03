@@ -1,4 +1,4 @@
-package com.android.ymittal.bazaar;
+package eu.shareonbazaar.dev.bazaar;
 
 import org.junit.Test;
 
