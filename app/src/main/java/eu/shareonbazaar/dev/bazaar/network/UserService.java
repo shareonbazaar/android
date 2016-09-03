@@ -1,6 +1,6 @@
-package com.android.ymittal.bazaar.network;
+package eu.shareonbazaar.dev.bazaar.network;
 
-import com.android.ymittal.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.model.User;
 
 import java.util.List;
 import java.util.Map;
