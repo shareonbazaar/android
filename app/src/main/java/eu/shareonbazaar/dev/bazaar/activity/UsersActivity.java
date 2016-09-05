@@ -1,10 +1,16 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -21,6 +27,7 @@ import retrofit2.Response;
 
 public class UsersActivity extends AppCompatActivity {
 
+    private LinearLayout linearLayout;
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -30,6 +37,7 @@ public class UsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
 
+        linearLayout = (LinearLayout)findViewById(R.id.user_layout);
         recyclerView = (RecyclerView) findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
 
@@ -42,21 +50,24 @@ public class UsersActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         loadUsers(response.body());
-                       /* TextView textView = (TextView)findViewById(R.id.test);
-                        for (int i = 0; i < response.body().size(); i++) {
-                            textView.append(response.body().get(i).getName());
-                        }*/
                     }
 
                     @Override
                     public void onFailure(Call<List<User>> call, Throwable t) {
+                        Snackbar snackbar = Snackbar
+                                .make(linearLayout, "Data retrieval failed!", Snackbar.LENGTH_LONG);
+
+                        snackbar.show();
                         Log.d("LOG_TAG", "Data retrieval failed!");
                     }
                 });
     }
 
     private void loadUsers(List<User> users){
-        adapter = new RecyclerAdapter(users);
+        adapter = new RecyclerAdapter(getApplicationContext(), users);
         recyclerView.setAdapter(adapter);
     }
+
+
+
 }
