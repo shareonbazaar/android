@@ -5,9 +5,9 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.android.ymittal.bazaar"
+        applicationId "eu.shareonbazaar.dev.bazaar"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -30,4 +30,5 @@ dependencies {
 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

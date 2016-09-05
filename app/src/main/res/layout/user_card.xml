@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="#000"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
         card_view:cardUseCompatPadding="true"
         card_view:contentPadding="10dp">
 
@@ -18,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/user_picture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,21 +33,28 @@
                 android:textColor="@color/cardview_light_background"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentTop="true" />-->
+
+            <ImageView
+                android:id="@+id/user_picture"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="false"/>
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
-                android:text="Odujoko Damilola"
+                android:text=""
                 android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/user_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lagos, Nigeria"
+                android:text=""
                 android:layout_below="@+id/user_name"
                 android:layout_centerHorizontal="true" />
 
