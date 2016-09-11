@@ -1,17 +1,13 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,12 +21,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UsersActivity extends AppCompatActivity {
+public class UsersActivity extends AppCompatActivity implements RecyclerAdapter.ClickListener  {
 
     private LinearLayout linearLayout;
     private RecyclerView recyclerView;
-    private RecyclerAdapter adapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +35,7 @@ public class UsersActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
@@ -64,10 +58,17 @@ public class UsersActivity extends AppCompatActivity {
     }
 
     private void loadUsers(List<User> users){
-        adapter = new RecyclerAdapter(getApplicationContext(), users);
+        RecyclerAdapter adapter = new RecyclerAdapter(getApplicationContext(), users);
+        adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
 
 
+    @Override
+    public void itemClicked(View view, int position) {
+        Snackbar snackbar = Snackbar
+                .make(linearLayout, "Click working", Snackbar.LENGTH_LONG);
 
+        snackbar.show();
+    }
 }

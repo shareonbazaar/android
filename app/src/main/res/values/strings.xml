@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bazaar</string>
+    <string name="profile_image">User profile image</string>
 </resources>
