@@ -16,7 +16,7 @@ import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.model.User;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
-import eu.shareonbazaar.dev.bazaar.userInterface.RecyclerAdapter;
+import eu.shareonbazaar.dev.bazaar.ui.RecyclerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
