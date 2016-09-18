@@ -76,7 +76,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public void setClickListener(ClickListener clickListener)
     {
-        this.clickListener = clickListener;
+        RecyclerAdapter.clickListener = clickListener;
     }
 
     @Override
