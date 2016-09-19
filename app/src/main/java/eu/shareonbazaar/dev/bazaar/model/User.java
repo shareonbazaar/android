@@ -34,10 +34,10 @@ public class User {
     public Integer coins;
     @SerializedName("skills")
     @Expose
-    public List<String> skills = new ArrayList<String>();
+    public List<JsonObject> skills = new ArrayList<>();
     @SerializedName("interests")
     @Expose
-    public List<String> interests = new ArrayList<String>();
+    public List<JsonObject> interests = new ArrayList<>();
     @SerializedName("aboutMe")
     @Expose
     public String aboutMe;
@@ -106,19 +106,19 @@ public class User {
         this.coins = coins;
     }
 
-    public List<String> getSkills() {
+    public List<JsonObject> getSkills() {
         return skills;
     }
 
-    public void setSkills(List<String> skills) {
+    public void setSkills(List<JsonObject> skills) {
         this.skills = skills;
     }
 
-    public List<String> getInterests() {
+    public List<JsonObject> getInterests() {
         return interests;
     }
 
-    public void setInterests(List<String> interests) {
+    public void setInterests(List<JsonObject> interests) {
         this.interests = interests;
     }
 

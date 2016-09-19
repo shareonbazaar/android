@@ -12,8 +12,10 @@ import retrofit2.http.QueryMap;
 
 public interface UserService {
 
-    @GET("api/users")
+    @GET("/api/users")
     Call<List<User>> getUsers(@QueryMap Map<String, String> options);
+    /*@GET("/api/")
+    Call<List<User>> getUsers(@QueryMap Map<String, String> options);*/
 
     @GET("api/users/{id}")
     Call<User> getUser(@Path("id") String id);

@@ -52,7 +52,8 @@ public class UsersActivity extends AppCompatActivity implements RecyclerAdapter.
                                 .make(linearLayout, "Data retrieval failed!", Snackbar.LENGTH_LONG);
 
                         snackbar.show();
-                        Log.d("LOG_TAG", "Data retrieval failed!");
+                        String message = t.toString();
+                        Log.d("LOG_TAG", message);
                     }
                 });
     }
