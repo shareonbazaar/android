@@ -1,7 +1,6 @@
-package eu.shareonbazaar.dev.bazaar.userInterface;
+package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.lib.RoundImageTransformation;
 import eu.shareonbazaar.dev.bazaar.model.User;
 
 
