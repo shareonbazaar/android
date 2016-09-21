@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView tvRegister;
@@ -86,5 +87,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onLoginButtonClicked() {
         // TODO: make a network call to check credentials
+
+        // TODO: Just a test. Change at will.(Damilola)
+        Intent intent = new Intent(getApplicationContext(), UsersActivity.class);
+        startActivity(intent);
     }
 }
