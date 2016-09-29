@@ -20,4 +20,7 @@
     <string name="err_et_first_name">first name required</string>
     <string name="err_et_last_name">last name required</string>
     <string name="err_et_confirm_pass">password does not match</string>
+    <string name="signup_success">Signup successful!</string>
+    <string name="signup_fail">Something went wrong!</string>
+    <string name="login_fail">Unauthorized!</string>
 </resources>

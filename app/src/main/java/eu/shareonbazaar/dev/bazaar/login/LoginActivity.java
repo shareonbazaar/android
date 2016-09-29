@@ -111,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                             String token = response.body().getToken();
                             loginSuccess();
                         } catch (Exception e) {
-                            Toast.makeText(LoginActivity.this, "Unauthorized!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_SHORT).show();
                         }
                     }
 

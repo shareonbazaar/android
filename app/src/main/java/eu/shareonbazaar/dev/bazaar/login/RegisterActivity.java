@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String token = response.body().getToken();
                             signupSuccess();
                         } catch (Exception e) {
-                            Toast.makeText(RegisterActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, R.string.signup_fail, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void signupSuccess() {
-        Toast.makeText(RegisterActivity.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(RegisterActivity.this, R.string.signup_success, Toast.LENGTH_SHORT).show();
         startActivity(new Intent(RegisterActivity.this, UsersActivity.class));
     }
 
