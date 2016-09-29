@@ -8,9 +8,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.JsonElement;
+
+import org.json.JSONObject;
 
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
+import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
+import eu.shareonbazaar.dev.bazaar.network.UserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private TextView tvRegister;
@@ -78,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginSuccess() {
-        // TODO: go to home screen
+        startActivity(new Intent(LoginActivity.this, UsersActivity.class));
     }
 
     private void onLoginWithGoogleButtonClicked() {
@@ -86,10 +96,32 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onLoginButtonClicked() {
-        // TODO: make a network call to check credentials
+        if (etEmail.getText().toString().equals("")) {
+            etEmail.setError(getString(R.string.err_et_email));
+            return;
+        }
+        if (etPassword.getText().toString().equals("")) {
+            etPassword.setError(getString(R.string.err_et_pass));
+            return;
+        }
 
-        // TODO: Just a test. Change at will.(Damilola)
-        Intent intent = new Intent(getApplicationContext(), UsersActivity.class);
-        startActivity(intent);
+        UserService service = RetrofitTemplate.retrofit.create(UserService.class);
+        service.loginUser(etEmail.getText().toString(), etPassword.getText().toString())
+                .enqueue(new Callback<Token>() {
+                    @Override
+                    public void onResponse(Call<Token> call, Response<Token> response) {
+                        try {
+                            String token = response.body().getToken();
+                            loginSuccess();
+                        } catch (Exception e) {
+                            Toast.makeText(LoginActivity.this, "Unauthorized!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Token> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
