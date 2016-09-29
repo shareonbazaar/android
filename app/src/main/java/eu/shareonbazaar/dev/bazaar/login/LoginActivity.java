@@ -10,10 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonElement;
-
-import org.json.JSONObject;
-
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
@@ -106,7 +102,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-        service.loginUser(etEmail.getText().toString(), etPassword.getText().toString())
+        service.loginUser(etEmail.getText().toString(),
+                etPassword.getText().toString())
                 .enqueue(new Callback<Token>() {
                     @Override
                     public void onResponse(Call<Token> call, Response<Token> response) {
