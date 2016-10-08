@@ -8,10 +8,10 @@ public class Authentication {
     @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("token")
+    @SerializedName("error")
     @Expose
     private String error;
-    @SerializedName("token")
+    @SerializedName("status")
     @Expose
     private int status;
 
@@ -35,6 +35,14 @@ public class Authentication {
      */
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
 }
