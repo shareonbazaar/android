@@ -2,6 +2,7 @@ package eu.shareonbazaar.dev.bazaar.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.activity.MainActivity;
 import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
+import eu.shareonbazaar.dev.bazaar.utility.SharedPreference;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -104,9 +107,9 @@ public class LoginActivity extends AppCompatActivity {
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
         service.loginUser(etEmail.getText().toString(),
                 etPassword.getText().toString())
-                .enqueue(new Callback<Token>() {
+                .enqueue(new Callback<Authentication>() {
                     @Override
-                    public void onResponse(Call<Token> call, Response<Token> response) {
+                    public void onResponse(Call<Authentication> call, Response<Authentication> response) {
                         try {
                             String token = response.body().getToken();
                             loginSuccess();
@@ -116,9 +119,27 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Token> call, Throwable t) {
+                    public void onFailure(Call<Authentication> call, Throwable t) {
                         Toast.makeText(LoginActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
+    /*private void authenticate(Authentication authentication){
+        int status = authentication.getStatus();
+        String error = authentication.getError();
+        String token = authentication.getToken();
+
+        if(status == 200){
+            SharedPreference sharedPreference = new SharedPreference(getActivity());
+            sharedPreference.writeToSharedPreference("TOKEN", token);
+
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        }else{
+            Snackbar snackbar = Snackbar
+                    .make(mFrameLayout, error, Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+    }*/
 }

@@ -58,9 +58,9 @@ public class RegisterActivity extends AppCompatActivity {
                 etConfirmPass.getText().toString(),
                 etFirstName.getText().toString(),
                 etLastName.getText().toString())
-                .enqueue(new Callback<Token>() {
+                .enqueue(new Callback<Authentication>() {
                     @Override
-                    public void onResponse(Call<Token> call, Response<Token> response) {
+                    public void onResponse(Call<Authentication> call, Response<Authentication> response) {
                         try {
                             String token = response.body().getToken();
                             signupSuccess();
@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Token> call, Throwable t) {
+                    public void onFailure(Call<Authentication> call, Throwable t) {
 
                     }
                 });

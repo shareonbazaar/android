@@ -3,7 +3,7 @@ package eu.shareonbazaar.dev.bazaar.login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Token {
+public class Authentication {
 
     @SerializedName("token")
     @Expose

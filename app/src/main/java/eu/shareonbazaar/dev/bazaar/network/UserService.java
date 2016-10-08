@@ -3,7 +3,7 @@ package eu.shareonbazaar.dev.bazaar.network;
 import java.util.List;
 import java.util.Map;
 
-import eu.shareonbazaar.dev.bazaar.login.Token;
+import eu.shareonbazaar.dev.bazaar.login.Authentication;
 import eu.shareonbazaar.dev.bazaar.model.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -23,14 +23,14 @@ public interface UserService {
 
     @FormUrlEncoded
     @POST("api/login")
-    Call<Token> loginUser(@Field("email") String email,
-                          @Field("password") String password);
+    Call<Authentication> loginUser(@Field("email") String email,
+                                   @Field("password") String password);
 
     @FormUrlEncoded
     @POST("api/signup")
-    Call<Token> signupUser(@Field("email") String email,
-                           @Field("password") String password,
-                           @Field("confirmPassword") String confirmPassword,
-                           @Field("first_name") String first_name,
-                           @Field("last_name") String last_name);
+    Call<Authentication> signupUser(@Field("email") String email,
+                                    @Field("password") String password,
+                                    @Field("confirmPassword") String confirmPassword,
+                                    @Field("first_name") String first_name,
+                                    @Field("last_name") String last_name);
 }
