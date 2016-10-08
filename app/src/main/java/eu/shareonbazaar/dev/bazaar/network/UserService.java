@@ -3,7 +3,7 @@ package eu.shareonbazaar.dev.bazaar.network;
 import java.util.List;
 import java.util.Map;
 
-import eu.shareonbazaar.dev.bazaar.login.Authentication;
+import eu.shareonbazaar.dev.bazaar.model.Authentication;
 import eu.shareonbazaar.dev.bazaar.model.User;
 import retrofit2.Call;
 import retrofit2.http.Field;
