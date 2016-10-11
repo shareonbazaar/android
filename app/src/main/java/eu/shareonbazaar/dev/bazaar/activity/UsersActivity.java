@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,10 @@ import eu.shareonbazaar.dev.bazaar.model.User;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
 import eu.shareonbazaar.dev.bazaar.ui.RecyclerAdapter;
+import eu.shareonbazaar.dev.bazaar.utility.SharedPreference;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +36,9 @@ public class UsersActivity extends AppCompatActivity implements RecyclerAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
 
+        SharedPreference sharedPreference = new SharedPreference(getApplication());
+        String token = sharedPreference.retrieveToken("TOKEN");
+
         linearLayout = (LinearLayout)findViewById(R.id.user_layout);
         recyclerView = (RecyclerView) findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
@@ -39,10 +47,11 @@ public class UsersActivity extends AppCompatActivity implements RecyclerAdapter.
         recyclerView.setLayoutManager(mLayoutManager);
 
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-        service.getUsers(new HashMap<String, String>())
+        service.getUsers(token, new HashMap<String, String>())
                 .enqueue(new Callback<List<User>>() {
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                        //Log.d("LOG_TAG", response.body().get(0).getName());
                         loadUsers(response.body());
                     }
 

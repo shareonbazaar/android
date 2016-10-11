@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
@@ -16,7 +17,7 @@ import retrofit2.http.QueryMap;
 public interface UserService {
 
     @GET("/api/users")
-    Call<List<User>> getUsers(@QueryMap Map<String, String> options);
+    Call<List<User>> getUsers(@Header("token") String token, @QueryMap Map<String, String> options);
 
     @GET("api/users/{id}")
     Call<User> getUser(@Path("id") String id);
