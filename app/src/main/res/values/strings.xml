@@ -23,4 +23,7 @@
     <string name="signup_success">Signup successful!</string>
     <string name="signup_fail">Something went wrong!</string>
     <string name="login_fail">Unauthorized!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
