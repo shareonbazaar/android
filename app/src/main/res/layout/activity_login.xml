@@ -3,7 +3,7 @@
     android:id="@+id/login_mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00897B"
+    android:background="@color/colorPrimaryDark"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:padding="@dimen/padding_sides">
