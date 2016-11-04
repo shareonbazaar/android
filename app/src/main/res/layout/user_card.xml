@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:orientation="horizontal"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingBottom="2dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="8dp">
 
     <ImageView
         android:id="@+id/user_picture"
@@ -37,6 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/user_name"
             android:text="Lagos, NG" />
-        
+
     </RelativeLayout>
 </LinearLayout>
