@@ -3,10 +3,7 @@ package eu.shareonbazaar.dev.bazaar.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.activity.MainActivity;
 import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
 import eu.shareonbazaar.dev.bazaar.model.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
@@ -45,15 +41,15 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
         String token = sharedPreference.retrieveToken("TOKEN");
 
-        if(token.length() != 0){
+        if (token.length() != 0) {
             loginSuccess();
-        }else {
+        } else {
             initViews();
         }
     }
 
     private void initViews() {
-        relativeLayout = (RelativeLayout)findViewById(R.id.login_mainLayout);
+        relativeLayout = (RelativeLayout) findViewById(R.id.login_mainLayout);
         tvRegister = (TextView) findViewById(R.id.tvRegister);
         tvRestore = (TextView) findViewById(R.id.tvRestore);
         etEmail = (EditText) findViewById(R.id.etEmail);
@@ -140,16 +136,16 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void authenticate(Authentication authentication){
+    private void authenticate(Authentication authentication) {
         int status = authentication.getStatus();
         String error = authentication.getError();
         String token = authentication.getToken();
 
-        if(status == 200){
+        if (status == 200) {
             SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
             sharedPreference.saveToken("TOKEN", token);
             loginSuccess();
-        }else{
+        } else {
             Snackbar.make(relativeLayout, error, Snackbar.LENGTH_LONG).show();
         }
     }

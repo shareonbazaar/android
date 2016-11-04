@@ -1,7 +1,6 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickListener{
+public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickListener {
 
     private FrameLayout frameLayout;
     private RecyclerView recyclerView;
@@ -36,7 +34,7 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
         // Required empty public constructor
     }
 
-    private void loadUsers(List<User> users){
+    private void loadUsers(List<User> users) {
         RecyclerAdapter adapter = new RecyclerAdapter(getActivity(), users);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
@@ -57,14 +55,14 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        frameLayout = (FrameLayout)inflater.inflate(R.layout.fragment_people, container, false);
+        frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
 
         SharedPreference sharedPreference = new SharedPreference(getContext());
         String token = sharedPreference.retrieveToken("TOKEN");
 
-        recyclerView = (RecyclerView)frameLayout.findViewById(R.id.user_list);
+        recyclerView = (RecyclerView) frameLayout.findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
