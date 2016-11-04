@@ -9,30 +9,40 @@ import android.support.v7.widget.Toolbar;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
 
+/**
+ * Activity to encapsulate all major functionaly of this app
+ */
 public class UsersActivity extends AppCompatActivity {
 
+    public static final String PEOPLE_TITLE = "PEOPLE";
+    public static final String PROFILE_TITLE = "PROFILE";
+    public static final String WALLET_TITLE = "WALLET";
+
+    /**
+     * Sets up toolbar and ViewPager (tabs)
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main);
-        initializeViewPager(viewPager, toolbar);
+        initializeViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_main);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
-    private void initializeViewPager(ViewPager viewPager, Toolbar toolbar) {
+    /**
+     * Initializes ViewPager by adding fragments with defined heading
+     * @param viewPager
+     */
+    private void initializeViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-
-        final String PEOPLE_TITLE = "PEOPLE";
-        String PROFILE_TITLE = "PROFILE";
-        String WALLET_TITLE = "WALLET";
-
         adapter.addFragment(new PeopleFragment(), PEOPLE_TITLE);
         adapter.addFragment(new ProfileFragment(), PROFILE_TITLE);
         adapter.addFragment(new WalletFragment(), WALLET_TITLE);

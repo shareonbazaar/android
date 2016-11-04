@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import eu.shareonbazaar.dev.bazaar.R;
 
+/**
+ * Activity to display public information of any individual's profile
+ */
 public class IndividualProfile extends AppCompatActivity {
 
     @Override

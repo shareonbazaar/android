@@ -2,11 +2,13 @@ package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -46,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public void setClickListener(ClickListener clickListener) {
-        this.clickListener = clickListener;
+        RecyclerAdapter.clickListener = clickListener;
     }
 
     @Override
@@ -81,8 +83,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         @Override
         public void onClick(View view) {
             if (clickListener != null) {
+                Log.d("Log", view.getClass().getName());
                 clickListener.itemClicked(view, this.getLayoutPosition());
-
             }
         }
     }

@@ -25,28 +25,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Fragment to display a list of people on Bazaar
+ */
 public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickListener {
 
+    public static final String TOKEN = "TOKEN";
     private FrameLayout frameLayout;
     private RecyclerView recyclerView;
 
+    /**
+     * requires empty constructor
+     */
     public PeopleFragment() {
-        // Required empty public constructor
-    }
-
-    private void loadUsers(List<User> users) {
-        RecyclerAdapter adapter = new RecyclerAdapter(getActivity(), users);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-    }
-
-
-    @Override
-    public void itemClicked(View view, int position) {
-        Snackbar snackbar = Snackbar
-                .make(frameLayout, "Click working", Snackbar.LENGTH_LONG);
-
-        snackbar.show();
     }
 
     @Override
@@ -54,13 +45,44 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
+    /**
+     * Creates a <code>RecyclerAdapter</code> and adds the list of <code>users</code>
+     *
+     * @param users
+     */
+    private void loadUsers(List<User> users) {
+        RecyclerAdapter adapter = new RecyclerAdapter(getActivity(), users);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+    }
 
-        SharedPreference sharedPreference = new SharedPreference(getContext());
-        String token = sharedPreference.retrieveToken("TOKEN");
+
+    /**
+     * Shows a Snackbar message when a list item is clicked
+     *
+     * @param view
+     * @param position position in RecyclerView
+     */
+    @Override
+    public void itemClicked(View view, int position) {
+        Snackbar snackbar = Snackbar.make(frameLayout, "Click working", Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    /**
+     * Sets up the fragment and populates RecyclerView to display a list of
+     * all people on Bazaar
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return container layout of RecyclerView
+     */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate layout for this fragment
+        frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
 
         recyclerView = (RecyclerView) frameLayout.findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
@@ -68,12 +90,23 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
 
+        populateRecyclerView();
+
+        return frameLayout;
+    }
+
+    /**
+     * Populates RecyclerView by making an API call to retrieve a list of users
+     */
+    private void populateRecyclerView() {
+        SharedPreference sharedPreference = new SharedPreference(getContext());
+        String token = sharedPreference.retrieveToken(TOKEN);
+
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
         service.getUsers(token, new HashMap<String, String>())
                 .enqueue(new Callback<List<User>>() {
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                        //Log.d("LOG_TAG", response.body().get(0).getName());
                         loadUsers(response.body());
                     }
 
@@ -81,14 +114,11 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
                     public void onFailure(Call<List<User>> call, Throwable t) {
                         Snackbar snackbar = Snackbar
                                 .make(frameLayout, "Data retrieval failed!", Snackbar.LENGTH_LONG);
-
                         snackbar.show();
-                        String message = t.toString();
-                        Log.d("LOG_TAG", message);
+
+                        Log.d("LOG_TAG", t.toString());
                     }
                 });
-
-        return frameLayout;
     }
 
     @Override
