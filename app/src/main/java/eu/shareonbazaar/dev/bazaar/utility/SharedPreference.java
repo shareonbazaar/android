@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
  */
 public class SharedPreference {
     private static final String PREF_NAME = "PREF";
+
     SharedPreferences sharedPref;
 
     public SharedPreference(Context context) {

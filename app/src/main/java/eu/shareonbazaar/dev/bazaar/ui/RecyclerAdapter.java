@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -49,6 +48,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public void setClickListener(ClickListener clickListener) {
         RecyclerAdapter.clickListener = clickListener;
+    }
+
+    /**
+     * Returns <code>User</code> at position in list
+     *
+     * @param pos position in list
+     * @return <code>User</code> at position
+     */
+    public User getUserByPos(int pos) {
+        return users.get(pos);
     }
 
     @Override

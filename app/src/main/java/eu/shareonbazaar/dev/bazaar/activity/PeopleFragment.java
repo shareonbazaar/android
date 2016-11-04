@@ -1,6 +1,7 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -31,8 +32,11 @@ import retrofit2.Response;
 public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickListener {
 
     public static final String TOKEN = "TOKEN";
+    public static final String USER_ID = "USER_ID";
+
     private FrameLayout frameLayout;
     private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
 
     /**
      * requires empty constructor
@@ -51,22 +55,23 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
      * @param users
      */
     private void loadUsers(List<User> users) {
-        RecyclerAdapter adapter = new RecyclerAdapter(getActivity(), users);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        recyclerAdapter = new RecyclerAdapter(getActivity(), users);
+        recyclerAdapter.setClickListener(this);
+        recyclerView.setAdapter(recyclerAdapter);
     }
 
 
     /**
-     * Shows a Snackbar message when a list item is clicked
+     * Starts new activity <code>IndividualProfile</code> for the clicked person
      *
      * @param view
      * @param position position in RecyclerView
      */
     @Override
     public void itemClicked(View view, int position) {
-        Snackbar snackbar = Snackbar.make(frameLayout, "Click working", Snackbar.LENGTH_LONG);
-        snackbar.show();
+        Intent intent = new Intent(getActivity(), IndividualProfile.class);
+        intent.putExtra(USER_ID, recyclerAdapter.getUserByPos(position).getId());
+        startActivity(intent);
     }
 
     /**
