@@ -68,7 +68,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.userLocation.setText(String.valueOf(users.get(position).getLocation()));
         Picasso.with(context)
                 .load(users.get(position).getPicture())
-                .resize(50,50)
                 .transform(new RoundImageTransformation())
                 .into(holder.userPicture);
     }
