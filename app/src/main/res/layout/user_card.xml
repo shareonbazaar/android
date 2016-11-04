@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="70dp"
+    android:orientation="horizontal"
     android:paddingBottom="5dp"
     android:paddingTop="5dp">
 
@@ -10,34 +10,33 @@
         android:id="@+id/user_picture"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
+        android:adjustViewBounds="false"
         android:contentDescription="@string/profile_image"
-        android:adjustViewBounds="false"/>
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp">
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginBottom="4dp"
-            android:text="Damilola Odujoko" />
+            android:text="Damilola Odujoko"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/user_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lagos, NG"
-            android:layout_below="@+id/user_name"/>
-
-
+            android:layout_below="@+id/user_name"
+            android:text="Lagos, NG" />
+        
     </RelativeLayout>
 </LinearLayout>
