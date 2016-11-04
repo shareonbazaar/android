@@ -8,7 +8,6 @@
     android:focusableInTouchMode="true"
     android:padding="@dimen/padding_sides">
 
-
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="match_parent"
