@@ -3,10 +3,8 @@ package eu.shareonbazaar.dev.bazaar.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,7 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.activity.MainActivity;
 import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
 import eu.shareonbazaar.dev.bazaar.model.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
@@ -110,34 +107,65 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onLoginButtonClicked() {
-        if (etEmail.getText().toString().equals("")) {
-            etEmail.setError(getString(R.string.err_et_email));
-            return;
-        }
-        if (etPassword.getText().toString().equals("")) {
+        etEmail.setError(null);
+        etPassword.setError(null);
+
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             etPassword.setError(getString(R.string.err_et_pass));
-            return;
+            focusView = etPassword;
+            cancel = true;
         }
 
-        UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-        service.loginUser(etEmail.getText().toString(),
-                etPassword.getText().toString())
-                .enqueue(new Callback<Authentication>() {
-                    @Override
-                    public void onResponse(Call<Authentication> call, Response<Authentication> response) {
-                        try {
-                            authenticate(response.body());
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError(getString(R.string.err_et_email));
+            focusView = etEmail;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            etEmail.setError(getString(R.string.error_invalid_email));
+            focusView = etEmail;
+            cancel = true;
+        }
 
-                        } catch (Exception e) {
-                            Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
+        if (cancel) {
+            focusView.requestFocus();
+        } else {
+
+            UserService service = RetrofitTemplate.retrofit.create(UserService.class);
+            service.loginUser(etEmail.getText().toString(),
+                    etPassword.getText().toString())
+                    .enqueue(new Callback<Authentication>() {
+                        @Override
+                        public void onResponse(Call<Authentication> call, Response<Authentication> response) {
+                            try {
+                                authenticate(response.body());
+
+                            } catch (Exception e) {
+                                Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Authentication> call, Throwable t) {
-                        Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<Authentication> call, Throwable t) {
+                            Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
     }
 
     private void authenticate(Authentication authentication){
