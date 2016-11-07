@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -110,34 +111,70 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void onLoginButtonClicked() {
-        if (etEmail.getText().toString().equals("")) {
-            etEmail.setError(getString(R.string.err_et_email));
-            return;
-        }
-        if (etPassword.getText().toString().equals("")) {
+        // Reset errors.
+        etEmail.setError(null);
+        etPassword.setError(null);
+
+        // Store values at the time of the login attempt.
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             etPassword.setError(getString(R.string.err_et_pass));
-            return;
+            focusView = etPassword;
+            cancel = true;
         }
 
-        UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-        service.loginUser(etEmail.getText().toString(),
-                etPassword.getText().toString())
-                .enqueue(new Callback<Authentication>() {
-                    @Override
-                    public void onResponse(Call<Authentication> call, Response<Authentication> response) {
-                        try {
-                            authenticate(response.body());
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError(getString(R.string.err_et_email));
+            focusView = etEmail;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            etEmail.setError(getString(R.string.error_invalid_email));
+            focusView = etEmail;
+            cancel = true;
+        }
 
-                        } catch (Exception e) {
-                            Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            UserService service = RetrofitTemplate.retrofit.create(UserService.class);
+            service.loginUser(etEmail.getText().toString(),
+                    etPassword.getText().toString())
+                    .enqueue(new Callback<Authentication>() {
+                        @Override
+                        public void onResponse(Call<Authentication> call, Response<Authentication> response) {
+                            try {
+                                authenticate(response.body());
+
+                            } catch (Exception e) {
+                                Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Authentication> call, Throwable t) {
-                        Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<Authentication> call, Throwable t) {
+                            Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private boolean isEmailValid(String email) {
+        // TODO: Replace this with your own logic
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        // TODO: Replace this with your own logic
+        return password.length() > 4;
     }
 
     private void authenticate(Authentication authentication){
