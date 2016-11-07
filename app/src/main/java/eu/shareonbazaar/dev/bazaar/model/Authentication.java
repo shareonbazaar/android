@@ -22,14 +22,6 @@ public class Authentication {
         return token;
     }
 
-    public String getError() {
-        return error;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
     /**
      * @param token The token
      */
@@ -37,8 +29,16 @@ public class Authentication {
         this.token = token;
     }
 
+    public String getError() {
+        return error;
+    }
+
     public void setError(String error) {
         this.error = error;
+    }
+
+    public int getStatus() {
+        return status;
     }
 
     public void setStatus(int status) {

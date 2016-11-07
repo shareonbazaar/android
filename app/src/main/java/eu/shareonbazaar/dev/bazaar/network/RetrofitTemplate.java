@@ -8,13 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitTemplate {
 
-    private static String baseUrl = "http://dev.shareonbazaar.eu/";
-    //private String baseUrl = "http://bazaar-dev.eu-central-1.elasticbeanstalk.com/"''
-
     public static Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             .create();
-
+    //private String baseUrl = "http://bazaar-dev.eu-central-1.elasticbeanstalk.com/"''
+    private static String baseUrl = "http://dev.shareonbazaar.eu/";
     public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))

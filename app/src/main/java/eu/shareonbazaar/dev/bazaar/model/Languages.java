@@ -17,18 +17,23 @@ public class Languages {
     public String getAr() {
         return ar;
     }
+
     public void setAr(String ar) {
         this.ar = ar;
     }
+
     public String getDe() {
         return de;
     }
+
     public void setDe(String de) {
         this.de = de;
     }
+
     public String getEn() {
         return en;
     }
+
     public void setEn(String en) {
         this.en = en;
     }

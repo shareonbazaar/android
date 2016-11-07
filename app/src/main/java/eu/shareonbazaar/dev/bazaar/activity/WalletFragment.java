@@ -1,7 +1,6 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +9,15 @@ import android.view.ViewGroup;
 
 import eu.shareonbazaar.dev.bazaar.R;
 
+/**
+ * Fragment to display Bazaar wallet information
+ */
 public class WalletFragment extends Fragment {
+
+    /**
+     * requires empty constructor
+     */
     public WalletFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -20,10 +25,18 @@ public class WalletFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Sets up the fragment
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return container layout
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate layout for this fragment
         return inflater.inflate(R.layout.fragment_wallet, container, false);
     }
 

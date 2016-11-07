@@ -20,7 +20,7 @@ public interface UserService {
     Call<List<User>> getUsers(@Header("token") String token, @QueryMap Map<String, String> options);
 
     @GET("api/users/{id}")
-    Call<User> getUser(@Path("id") String id);
+    Call<User> getUser(@Header("token") String token, @Path("id") String id);
 
     @FormUrlEncoded
     @POST("api/login")
