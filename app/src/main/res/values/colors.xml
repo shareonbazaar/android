@@ -5,5 +5,6 @@
     <color name="colorAccent">#ef5e4a</color>
     <color name="colorPrimaryText">#666</color>
     <color name="colorSecondaryText">#B0BEC5</color>
+    <color name="color_white">#fff</color>
     <color name="edittext_floating">#B0BEC5</color>
 </resources>

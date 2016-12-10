@@ -14,7 +14,7 @@ import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
 
 /**
- * Activity to encapsulate all major functionaly of this app
+ * Activity to encapsulate all major functionality of this app
  */
 public class UsersActivity extends AppCompatActivity {
 
