@@ -3,14 +3,14 @@
     <string name="profile_image">User profile image</string>
 
     <string name="btn_restore">Restore Password</string>
-    <string name="btn_register">Register</string>
+    <string name="btn_register">Sign up</string>
     <string name="hint_et_email">Email</string>
     <string name="hint_et_pass">Password</string>
-    <string name="btn_login">Sign In</string>
+    <string name="signin">Sign in</string>
     <string name="tv_restore">Forgot password?</string>
     <string name="btn_facebook">Facebook Login</string>
     <string name="btn_google">Google Login</string>
-    <string name="tv_register">No account yet? Create one</string>
+    <string name="tv_signin">Already have an account?</string>
     <string name="hint_et_name">Name</string>
     <string name="err_et_pass">password must be 4 characters long</string>
     <string name="err_et_email">email required</string>

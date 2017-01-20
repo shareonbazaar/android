@@ -3,8 +3,20 @@
     <color name="colorPrimary">#2e3842</color>
     <color name="colorPrimaryDark">#161f27</color>
     <color name="colorAccent">#ef5e4a</color>
-    <color name="colorPrimaryText">#666</color>
+    <color name="colorPrimaryText">#737575</color>
     <color name="colorSecondaryText">#B0BEC5</color>
     <color name="color_white">#fff</color>
     <color name="edittext_floating">#B0BEC5</color>
+    <color name="light_gray">#f2f2f2</color>
+
+
+    <array name="dot_active">
+        <item>@color/colorPrimaryDark</item>
+        <item>@color/colorPrimaryDark</item>
+    </array>
+
+    <array name="dot_inactive">
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimary</item>
+    </array>
 </resources>
