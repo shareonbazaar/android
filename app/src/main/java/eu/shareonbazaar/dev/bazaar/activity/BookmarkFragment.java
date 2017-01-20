@@ -12,12 +12,12 @@ import eu.shareonbazaar.dev.bazaar.R;
 /**
  * Fragment to display and edit current user's profile
  */
-public class ProfileFragment extends Fragment {
+public class BookmarkFragment extends Fragment {
 
     /**
      * requires empty constructor
      */
-    public ProfileFragment() {
+    public BookmarkFragment() {
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_bookmark, container, false);
     }
 
     @Override

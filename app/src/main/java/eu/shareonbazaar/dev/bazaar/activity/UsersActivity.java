@@ -19,7 +19,7 @@ import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
 public class UsersActivity extends AppCompatActivity {
 
     public static final String PEOPLE_TITLE = "PEOPLE";
-    public static final String PROFILE_TITLE = "PROFILE";
+    public static final String BOOKMARKS_TITLE = "BOOKMARKS";
     public static final String WALLET_TITLE = "WALLET";
 
     /**
@@ -40,34 +40,6 @@ public class UsersActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_main);
         tabLayout.setupWithViewPager(viewPager);
 
-        SearchView searchView = (SearchView) findViewById(R.id.searchView);
-        // Sets searchable configuration defined in searchable.xml for this SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        // When a user executes a search the system starts your searchable activity and sends it a ACTION_SEARCH intent
-
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //doMySearch(query);
-        }
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                //searchFor(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                //filterSearchFor(query);
-                return true;
-            }
-        });
-
-
     }
 
     /**
@@ -77,8 +49,8 @@ public class UsersActivity extends AppCompatActivity {
     private void initializeViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PeopleFragment(), PEOPLE_TITLE);
-        adapter.addFragment(new ProfileFragment(), PROFILE_TITLE);
         adapter.addFragment(new WalletFragment(), WALLET_TITLE);
+        adapter.addFragment(new BookmarkFragment(), BOOKMARKS_TITLE);
         viewPager.setAdapter(adapter);
     }
 

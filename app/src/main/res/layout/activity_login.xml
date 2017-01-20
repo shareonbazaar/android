@@ -3,15 +3,42 @@
     android:id="@+id/login_mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/light_gray"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:padding="@dimen/padding_sides">
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/back_to_signup"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginLeft="-16dp"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_action_navigate_before"
+            android:contentDescription="@string/btn_register"/>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:text="@string/btn_register"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -47,21 +74,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
             android:text="@string/signin"
             android:textSize="@dimen/text_medium" />
 
-        <TextView
-            android:id="@+id/tvRestore"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:clickable="true"
-            android:linksClickable="false"
-            android:text="@string/tv_restore"
-            android:textSize="@dimen/text_small"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:linksClickable="false"
+                android:text="@string/tv_restore_prompt"
+                android:textSize="@dimen/text_small"
+                android:textColor="@color/colorPrimaryText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRestore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:clickable="true"
+                android:linksClickable="false"
+                android:text="@string/retrieve_action"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -89,7 +137,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,5 +149,5 @@
         android:text="@string/tv_signin"
         android:textSize="@dimen/text_small"
         android:textStyle="bold" />
-
+-->
 </RelativeLayout>

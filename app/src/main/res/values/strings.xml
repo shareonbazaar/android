@@ -7,7 +7,8 @@
     <string name="hint_et_email">Email</string>
     <string name="hint_et_pass">Password</string>
     <string name="signin">Sign in</string>
-    <string name="tv_restore">Forgot password?</string>
+    <string name="tv_restore_prompt">Forgot password?</string>
+    <string name="retrieve_action">Retrieve</string>
     <string name="btn_facebook">Facebook Login</string>
     <string name="btn_google">Google Login</string>
     <string name="tv_signin">Already have an account?</string>

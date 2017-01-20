@@ -1,11 +1,13 @@
 package eu.shareonbazaar.dev.bazaar.login;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +45,15 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+        Toolbar backToSignup = (Toolbar) findViewById(R.id.back_to_signup);
+
+        backToSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
         SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
         String token = sharedPreference.retrieveToken("TOKEN");
 
@@ -55,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initViews() {
         relativeLayout = (RelativeLayout)findViewById(R.id.login_mainLayout);
-        tvRegister = (TextView) findViewById(R.id.tvRegister);
+        //tvRegister = (TextView) findViewById(R.id.tvRegister);
         tvRestore = (TextView) findViewById(R.id.tvRestore);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -70,12 +81,12 @@ public class LoginActivity extends AppCompatActivity {
                 onLoginButtonClicked();
             }
         });
-        tvRegister.setOnClickListener(new View.OnClickListener() {
+        /*tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
-        });
+        });*/
         tvRestore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -2,12 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00897B"
+    android:background="@color/light_gray"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_sides">
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/back_to_signin"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginLeft="-16dp"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_action_navigate_before"
+            android:contentDescription="@string/signin"/>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:text="@string/signin"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -81,6 +106,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/custom_button"
         android:text="@string/btn_register"
+        android:textColor="@color/light_gray"
         android:textSize="@dimen/text_medium" />
 
 </LinearLayout>

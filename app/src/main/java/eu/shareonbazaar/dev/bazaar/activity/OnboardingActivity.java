@@ -1,18 +1,19 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.login.LoginActivity;
+import eu.shareonbazaar.dev.bazaar.login.RegisterActivity;
 import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
-
-import static eu.shareonbazaar.dev.bazaar.activity.UsersActivity.PEOPLE_TITLE;
-import static eu.shareonbazaar.dev.bazaar.activity.UsersActivity.PROFILE_TITLE;
-import static eu.shareonbazaar.dev.bazaar.activity.UsersActivity.WALLET_TITLE;
 
 public class OnboardingActivity extends AppCompatActivity {
 
@@ -27,6 +28,22 @@ public class OnboardingActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         initializeViewPager(viewPager);
+
+        Button signup = (Button)findViewById(R.id.onboarding_signup);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(OnboardingActivity.this, RegisterActivity.class));
+            }
+        });
+
+        TextView signin = (TextView)findViewById(R.id.onboarding_signin);
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(OnboardingActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     private void addDots(int position)
@@ -51,7 +68,7 @@ public class OnboardingActivity extends AppCompatActivity {
     private void initializeViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PeopleFragment(), "");
-        adapter.addFragment(new ProfileFragment(), "");
+        adapter.addFragment(new BookmarkFragment(), "");
         adapter.addFragment(new WalletFragment(), "");
         viewPager.setAdapter(adapter);
     }
