@@ -16,7 +16,7 @@
     </array>
 
     <array name="dot_inactive">
-        <item>@color/colorPrimary</item>
-        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimaryText</item>
+        <item>@color/colorPrimaryText</item>
     </array>
 </resources>

@@ -17,7 +17,7 @@ import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
 
 public class OnboardingActivity extends AppCompatActivity {
 
-    private TextView[] dots;
+    private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private int[] layouts;
 
@@ -26,8 +26,13 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        dotsLayout=(LinearLayout)findViewById(R.id.layoutDots);
+        layouts = new int[]{R.layout.fragment_board_1,R.layout.fragment_board_2};
+        addDots(0);
         initializeViewPager(viewPager);
+        viewPager.addOnPageChangeListener(viewListener);
+
 
         Button signup = (Button)findViewById(R.id.onboarding_signup);
         signup.setOnClickListener(new View.OnClickListener() {
@@ -49,11 +54,11 @@ public class OnboardingActivity extends AppCompatActivity {
     private void addDots(int position)
     {
 
-        dots = new TextView[layouts.length];
+        TextView[] dots = new TextView[layouts.length];
         int[] colorActive = getResources().getIntArray(R.array.dot_active);
         int[] colorInactive = getResources().getIntArray(R.array.dot_inactive);
         dotsLayout.removeAllViews();
-        for(int i=0; i<dots.length; i++)
+        for(int i = 0; i< dots.length; i++)
         {
             dots[i]=new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
@@ -67,9 +72,28 @@ public class OnboardingActivity extends AppCompatActivity {
 
     private void initializeViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PeopleFragment(), "");
-        adapter.addFragment(new BookmarkFragment(), "");
-        adapter.addFragment(new WalletFragment(), "");
+        adapter.addFragment(new Board_1_Fragment(), "");
+        adapter.addFragment(new Board_2_Fragment(), "");
         viewPager.setAdapter(adapter);
     }
+
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+            addDots(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+
+    };
 }
