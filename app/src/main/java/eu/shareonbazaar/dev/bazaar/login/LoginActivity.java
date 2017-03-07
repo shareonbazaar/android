@@ -192,10 +192,14 @@ public class LoginActivity extends AppCompatActivity {
         int status = authentication.getStatus();
         String error = authentication.getError();
         String token = authentication.getToken();
+        String id = authentication.getId();
 
         if(status == 200){
             SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
             sharedPreference.saveToken("TOKEN", token);
+
+            //TODO: Save user id
+
             loginSuccess();
         }else{
             Snackbar.make(relativeLayout, error, Snackbar.LENGTH_LONG).show();

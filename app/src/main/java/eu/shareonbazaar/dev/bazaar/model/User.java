@@ -8,8 +8,6 @@ import java.util.List;
 
 public class User {
 
-
-
     @SerializedName("name")
     @Expose
     public String name;

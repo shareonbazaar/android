@@ -1,30 +1,35 @@
 # Bazaar #
 
-The description of the app goes here.
+**Bazaar is a place for empowerment**. We believe locals and newcomers should share their skills and learn from each other.
 
-### What is this repository for? ###
+## What is this repository for?
 
-* Quick summary
-* Version
+This repository is to keep track of the development of the mobile version of the application ([Bazaar](https://www.shareonbazaar.eu/)) in android. Feel free to contribute as long as you follow the **Contribution guidelines**.
 
-### Screen shots
+## Screen shots/Mockups
 
-### How do I get set up? ###
+## How do I get set up?
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Clone repository
+* Import to Android studio and wait for gradle build
+* Explore folders to understand workflow
 
-### Contribution guidelines ###
+## Architecture (MVVM)
+Documentation coming soon...
 
-* Writing tests
-* Code review
-* Other guidelines
+## Contribution guidelines
 
-### Who do I talk to? ###
+* Design mockups for User Interfaces first (if working on a new UI or making adjustments)
+* Write method/function signature
+* Write tests for each method/function signature (test first programming paradigm)
+* Then write method/functionbody to pass the test
+* Each method must solve one and only one task
+* Others would come as we progress on development
+
+## Bugs and Feedback
+For bugs, questions and discussion, please use [Issues](https://github.com/shareonbazaar/android/issues)
+
+## Who do I talk to?
 
 * Repo owner or admin
 * Other community or team contact

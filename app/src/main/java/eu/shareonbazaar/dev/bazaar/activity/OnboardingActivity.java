@@ -39,6 +39,7 @@ public class OnboardingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(OnboardingActivity.this, RegisterActivity.class));
+                finish();
             }
         });
 
@@ -47,6 +48,7 @@ public class OnboardingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(OnboardingActivity.this, LoginActivity.class));
+                finish();
             }
         });
     }

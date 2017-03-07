@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Authentication {
 
+    @SerializedName("id")
+    @Expose
+    private String id;
     @SerializedName("token")
     @Expose
     private String token;
@@ -14,6 +17,14 @@ public class Authentication {
     @SerializedName("status")
     @Expose
     private int status;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * @return The token
