@@ -1,35 +1,23 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
 
-/**
- * Activity to encapsulate all major functionality of this app
- */
 public class UsersActivity extends AppCompatActivity {
 
     public static final String PEOPLE_TITLE = "PEOPLE";
     public static final String BOOKMARKS_TITLE = "BOOKMARKS";
     public static final String WALLET_TITLE = "WALLET";
 
-    /**
-     * Sets up toolbar and ViewPager (tabs)
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +43,6 @@ public class UsersActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Initializes ViewPager by adding fragments with defined heading
-     * @param viewPager
-     */
     private void initializeViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PeopleFragment(), PEOPLE_TITLE);

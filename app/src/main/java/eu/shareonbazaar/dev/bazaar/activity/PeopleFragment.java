@@ -20,27 +20,21 @@ import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.model.User;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
-import eu.shareonbazaar.dev.bazaar.ui.RecyclerAdapter;
+import eu.shareonbazaar.dev.bazaar.ui.UserAdapter;
 import eu.shareonbazaar.dev.bazaar.utility.SharedPreference;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Fragment to display a list of people on Bazaar
- */
-public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickListener {
+public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterClickListener {
 
     public static final String TOKEN = "TOKEN";
     public static final String USER_ID = "USER_ID";
 
     private FrameLayout frameLayout;
     private RecyclerView recyclerView;
-    private RecyclerAdapter recyclerAdapter;
+    private UserAdapter recyclerAdapter;
 
-    /**
-     * requires empty constructor
-     */
     public PeopleFragment() {
     }
 
@@ -49,40 +43,19 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * Creates a <code>RecyclerAdapter</code> and adds the list of <code>users</code>
-     *
-     * @param users
-     */
     private void loadUsers(List<User> users) {
-        recyclerAdapter = new RecyclerAdapter(getActivity(), users);
-        recyclerAdapter.setClickListener(this);
+        recyclerAdapter = new UserAdapter(this);
+        recyclerAdapter.setUserData(users);
         recyclerView.setAdapter(recyclerAdapter);
     }
 
-
-    /**
-     * Starts new activity <code>IndividualProfile</code> for the clicked person
-     *
-     * @param view
-     * @param position position in RecyclerView
-     */
     @Override
-    public void itemClicked(View view, int position) {
+    public void onItemClicked(View view, int position) {
         Intent intent = new Intent(getActivity(), IndividualProfile.class);
-        intent.putExtra(USER_ID, recyclerAdapter.getUserByPos(position).getId());
+        intent.putExtra(USER_ID, recyclerAdapter.getUserByPosition(position).getId());
         startActivity(intent);
     }
 
-    /**
-     * Sets up the fragment and populates RecyclerView to display a list of
-     * all people on Bazaar
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return container layout of RecyclerView
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,9 +73,6 @@ public class PeopleFragment extends Fragment implements RecyclerAdapter.ClickLis
         return frameLayout;
     }
 
-    /**
-     * Populates RecyclerView by making an API call to retrieve a list of users
-     */
     private void populateRecyclerView() {
         SharedPreference sharedPreference = new SharedPreference(getContext());
         String token = sharedPreference.retrieveToken(TOKEN);
