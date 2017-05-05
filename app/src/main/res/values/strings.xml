@@ -32,4 +32,8 @@
     <string name="action_settings">Settings</string>
     <string name="app_label">Search</string>
     <string name="search_hint">People, skills...</string>
+    <string name="request_exchange">Request Exchange</string>
+    <string name="interest_label">I am interested in</string>
+    <string name="offer_label">I can offer</string>
+    <string name="about_label">About me</string>
 </resources>

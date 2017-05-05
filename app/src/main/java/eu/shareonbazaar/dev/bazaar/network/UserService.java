@@ -5,6 +5,7 @@ import java.util.Map;
 
 import eu.shareonbazaar.dev.bazaar.model.Authentication;
 import eu.shareonbazaar.dev.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.model.UsersJsonResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -17,7 +18,7 @@ import retrofit2.http.QueryMap;
 public interface UserService {
 
     @GET("/api/users")
-    Call<List<User>> getUsers(@Header("token") String token, @QueryMap Map<String, String> options);
+    Call<UsersJsonResponse> getUsers(@Header("token") String token);
 
     @GET("api/users/{id}")
     Call<User> getUser(@Header("token") String token, @Path("id") String id);

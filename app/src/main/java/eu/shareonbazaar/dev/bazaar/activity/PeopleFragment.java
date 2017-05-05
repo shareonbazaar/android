@@ -18,6 +18,7 @@ import java.util.List;
 
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.model.UsersJsonResponse;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
 import eu.shareonbazaar.dev.bazaar.ui.UserAdapter;
@@ -43,7 +44,8 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         super.onCreate(savedInstanceState);
     }
 
-    private void loadUsers(List<User> users) {
+    private void loadUsers(UsersJsonResponse usersJson) {
+        List<User> users = usersJson.getUsers();
         recyclerAdapter = new UserAdapter(this);
         recyclerAdapter.setUserData(users);
         recyclerView.setAdapter(recyclerAdapter);
@@ -78,20 +80,22 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         String token = sharedPreference.retrieveToken(TOKEN);
 
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-        service.getUsers(token, new HashMap<String, String>())
-                .enqueue(new Callback<List<User>>() {
+        service.getUsers(token)
+                .enqueue(new Callback<UsersJsonResponse>() {
                     @Override
-                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                    public void onResponse(Call<UsersJsonResponse> call,
+                                           Response<UsersJsonResponse> response) {
                         loadUsers(response.body());
+                        //Log.d("SUCCESS", "Im done!!!");
                     }
 
                     @Override
-                    public void onFailure(Call<List<User>> call, Throwable t) {
+                    public void onFailure(Call<UsersJsonResponse> call, Throwable t) {
                         Snackbar snackbar = Snackbar
                                 .make(frameLayout, "Data retrieval failed!", Snackbar.LENGTH_LONG);
                         snackbar.show();
 
-                        Log.d("LOG_TAG", t.toString());
+                        Log.d("LOG_TAG", t.getMessage());
                     }
                 });
     }
