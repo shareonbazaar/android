@@ -70,10 +70,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
     }
 
     public interface UserAdapterClickListener {
-        void onItemClicked(View view, int position);
+        void onItemClicked(User user);
     }
 
-    public static class UserAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+    public class UserAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
         TextView userName;
         TextView userLocation;
@@ -92,7 +92,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
             if (mClickListener != null) {
-                mClickListener.onItemClicked(view, adapterPosition);
+                mClickListener.onItemClicked(getUserByPosition(adapterPosition));
             }
         }
     }

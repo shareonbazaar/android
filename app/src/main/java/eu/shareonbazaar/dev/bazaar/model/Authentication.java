@@ -1,9 +1,12 @@
 package eu.shareonbazaar.dev.bazaar.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Authentication {
+public class Authentication implements Parcelable{
 
     @SerializedName("id")
     @Expose
@@ -18,6 +21,29 @@ public class Authentication {
     @Expose
     private int status;
 
+    public Authentication(){
+
+    }
+
+    protected Authentication(Parcel in) {
+        id = in.readString();
+        token = in.readString();
+        error = in.readString();
+        status = in.readInt();
+    }
+
+    public static final Creator<Authentication> CREATOR = new Creator<Authentication>() {
+        @Override
+        public Authentication createFromParcel(Parcel in) {
+            return new Authentication(in);
+        }
+
+        @Override
+        public Authentication[] newArray(int size) {
+            return new Authentication[size];
+        }
+    };
+
     public String getId() {
         return id;
     }
@@ -26,16 +52,10 @@ public class Authentication {
         this.id = id;
     }
 
-    /**
-     * @return The token
-     */
     public String getToken() {
         return token;
     }
 
-    /**
-     * @param token The token
-     */
     public void setToken(String token) {
         this.token = token;
     }
@@ -56,4 +76,16 @@ public class Authentication {
         this.status = status;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(token);
+        dest.writeString(error);
+        dest.writeInt(status);
+    }
 }

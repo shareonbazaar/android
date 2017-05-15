@@ -15,7 +15,13 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.RegisterActivity" />
         <activity android:name=".login.RestorePasswordActivity" />
-        <activity android:name=".activity.IndividualProfile" />
+        <activity android:name=".activity.IndividualProfile"
+            android:parentActivityName=".activity.UsersActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.UsersActivity" />
+
+        </activity>
         <activity android:name=".activity.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

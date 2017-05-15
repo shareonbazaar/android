@@ -36,4 +36,14 @@
     <string name="interest_label">I am interested in</string>
     <string name="offer_label">I can offer</string>
     <string name="about_label">About me</string>
+    <string name="retry">Retry</string>
+    <string name="network_error_info">Unable to connect. Please try again</string>
+    <string name="search_give">Give</string>
+    <string name="search_receive">Receive</string>
+    <string name="search_exchange">Exchange</string>
+    <string name="search_query_hint">Search for skill</string>
+    <string name="search_distance_prompt">Distance</string>
+    <string name="search_apply_filter">Apply filter</string>
+    <string name="dialog_surprise_me">Surprise me!</string>
+    <string name="dialog_cancel">Cancel</string>
 </resources>

@@ -36,6 +36,8 @@
                 android:id="@+id/tv_profile_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/color_white"
+                android:textSize="18sp"
                 android:text="JOHN Doe"/>
 
             <TextView
@@ -43,12 +45,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/color_white"
+                android:textSize="15sp"
                 android:text="Location"/>
 
             <TextView
                 android:id="@+id/tv_profile_hometown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/color_white"
                 android:text="hometown"/>
 
         </LinearLayout>
@@ -85,6 +90,7 @@
                         android:text="@string/about_label"/>
 
                     <TextView
+                        android:id="@+id/tv_about_me"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Lorem ncsjsvigfdfidhvdhvcxvxvdghi"/>
@@ -155,6 +161,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
+                android:textColor="@color/color_white"
+                android:textSize="15sp"
+                android:background="@drawable/custom_button"
                 android:text="@string/request_exchange"/>
 
         </LinearLayout>

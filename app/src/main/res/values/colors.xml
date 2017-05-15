@@ -8,6 +8,7 @@
     <color name="color_white">#fff</color>
     <color name="edittext_floating">#B0BEC5</color>
     <color name="light_gray">#f2f2f2</color>
+    <color name="divider">#d7d7d7</color>
 
 
     <array name="dot_active">

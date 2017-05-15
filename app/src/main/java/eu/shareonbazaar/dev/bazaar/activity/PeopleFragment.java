@@ -3,7 +3,8 @@ package eu.shareonbazaar.dev.bazaar.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import java.util.HashMap;
 import java.util.List;
 
 import eu.shareonbazaar.dev.bazaar.R;
@@ -27,14 +31,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterClickListener {
+public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterClickListener,
+        SearchDialog.SearchDialogListener{
 
     public static final String TOKEN = "TOKEN";
-    public static final String USER_ID = "USER_ID";
 
-    private FrameLayout frameLayout;
     private RecyclerView recyclerView;
+    private LinearLayout networkErrorContainer;
+    private ProgressBar loadingIndicator;
     private UserAdapter recyclerAdapter;
+    private FloatingActionButton fab;
 
     public PeopleFragment() {
     }
@@ -52,9 +58,9 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     }
 
     @Override
-    public void onItemClicked(View view, int position) {
+    public void onItemClicked(User currentUser) {
         Intent intent = new Intent(getActivity(), IndividualProfile.class);
-        intent.putExtra(USER_ID, recyclerAdapter.getUserByPosition(position).getId());
+        intent.putExtra("User", currentUser);
         startActivity(intent);
     }
 
@@ -62,7 +68,27 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate layout for this fragment
-        frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
+        FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
+
+        loadingIndicator = (ProgressBar) frameLayout.findViewById(R.id.pb_loading_indicator);
+        networkErrorContainer = (LinearLayout) frameLayout.findViewById(R.id.ll_network_error);
+
+        Button retryConnection = (Button) frameLayout.findViewById(R.id.btn_retry);
+        retryConnection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                populateRecyclerView();
+                hideNetworkError();
+            }
+        });
+
+        fab = (FloatingActionButton) frameLayout.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
 
         recyclerView = (RecyclerView) frameLayout.findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
@@ -71,8 +97,14 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         recyclerView.setLayoutManager(mLayoutManager);
 
         populateRecyclerView();
+        hideNetworkError();
 
         return frameLayout;
+    }
+
+    private void showDialog(){
+        DialogFragment dialog = SearchDialog.newInstance(this);
+        dialog.show(getFragmentManager(), "SearchDialog");
     }
 
     private void populateRecyclerView() {
@@ -82,22 +114,44 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
         service.getUsers(token)
                 .enqueue(new Callback<UsersJsonResponse>() {
+
                     @Override
                     public void onResponse(Call<UsersJsonResponse> call,
                                            Response<UsersJsonResponse> response) {
                         loadUsers(response.body());
                         //Log.d("SUCCESS", "Im done!!!");
+                        hideProgressBar();
+                        showFab();
                     }
 
                     @Override
                     public void onFailure(Call<UsersJsonResponse> call, Throwable t) {
-                        Snackbar snackbar = Snackbar
-                                .make(frameLayout, "Data retrieval failed!", Snackbar.LENGTH_LONG);
-                        snackbar.show();
-
+                        showNetworkError();
                         Log.d("LOG_TAG", t.getMessage());
                     }
                 });
+    }
+    private void hideFab(){
+        fab.setVisibility(View.INVISIBLE);
+    }
+    private void showFab(){
+        fab.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar(){
+        loadingIndicator.setVisibility(View.INVISIBLE);
+    }
+
+    private void hideNetworkError(){
+        networkErrorContainer.setVisibility(View.INVISIBLE);
+        loadingIndicator.setVisibility(View.VISIBLE);
+        hideFab();
+    }
+
+    private void showNetworkError(){
+        networkErrorContainer.setVisibility(View.VISIBLE);
+        hideProgressBar();
+        hideFab();
     }
 
     @Override
@@ -108,5 +162,14 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onDialogPositiveClick(SearchDialog dialog) {
+        Toast.makeText(getContext(), "I was clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDialogNegativeClick(SearchDialog dialog) {
     }
 }

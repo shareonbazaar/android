@@ -2,44 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingBottom="2dp"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
     android:paddingTop="8dp">
 
-    <ImageView
-        android:id="@+id/user_picture"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:adjustViewBounds="false"
-        android:contentDescription="@string/profile_image"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="0dp"
-        android:paddingTop="0dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="7dp">
 
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/user_picture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/profile_image"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="Damilola Odujoko"
-            android:textSize="20sp" />
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp">
 
-        <TextView
-            android:id="@+id/user_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_name"
-            android:text="Lagos, NG" />
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Damilola Odujoko"
+                android:textSize="20sp" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/user_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_name"
+                android:text="Lagos, NG" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"/>
     
 </LinearLayout>

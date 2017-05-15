@@ -1,23 +1,36 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.lib.RoundImageTransformation;
 import eu.shareonbazaar.dev.bazaar.model.User;
-import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
-import eu.shareonbazaar.dev.bazaar.network.UserService;
-import eu.shareonbazaar.dev.bazaar.utility.SharedPreference;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-/**
- * Activity to display public information of any individual's profile
- */
 public class IndividualProfile extends AppCompatActivity {
+
+    @BindView(R.id.img_profile_user_image)
+    ImageView profileImage;
+    @BindView(R.id.tv_profile_user_name)
+    TextView userNameTextView;
+    @BindView(R.id.tv_profile_location)
+    TextView locationTextView;
+    @BindView(R.id.tv_profile_hometown)
+    TextView hometownTextView;
+    @BindView(R.id.tv_about_me)
+    TextView aboutMeTextView;
+    @BindView(R.id.rv_skills_list)
+    RecyclerView skillsList;
+    @BindView(R.id.rv_interest_list)
+    RecyclerView interestList;
 
     public static final String TOKEN = "TOKEN";
     public static final String USER_ID = "USER_ID";
@@ -26,12 +39,35 @@ public class IndividualProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_profile);
+        ButterKnife.bind(this);
 
-        Toast.makeText(this, "Individual profile page!", Toast.LENGTH_SHORT).show();
-        initView();
+        Intent parentIntent = getIntent();
+        User user = parentIntent.getExtras().getParcelable("User");
+        initView(user);
     }
 
-    private void initView() {
+    private void initView(User user){
+        if (user != null) {
+            String imageUrl = user.getPicture();
+            Picasso.with(getApplicationContext())
+                    .load(imageUrl)
+                    .placeholder(R.drawable.image_placeholder_detail)
+                    .error(R.drawable.image_placeholder_detail_error)
+                    .transform(new RoundImageTransformation())
+                    .into(profileImage);
+
+            String userName = user.getName();
+            userNameTextView.setText(userName);
+            String location = user.getLocation();
+            locationTextView.setText(location);
+            String hometown = user.getHometown();
+            hometownTextView.setText(hometown);
+            String aboutMe = user.getAboutMe();
+            aboutMeTextView.setText(aboutMe);
+        }
+    }
+
+    /*private void initView() {
         SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
 
         final String token = sharedPreference.retrieveToken(TOKEN);
@@ -51,5 +87,5 @@ public class IndividualProfile extends AppCompatActivity {
                         Log.d("LOG_TAG", t.toString());
                     }
                 });
-    }
+    }*/
 }
