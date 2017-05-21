@@ -46,4 +46,13 @@
     <string name="search_apply_filter">Apply filter</string>
     <string name="dialog_surprise_me">Surprise me!</string>
     <string name="dialog_cancel">Cancel</string>
+
+    <string name="default_skill_count">0</string>
+    <string name="default_skill_count_label">skills</string>
+
+    <plurals name="skill_count_label">
+        <item quantity="zero">skill</item>
+        <item quantity="one">skill</item>
+        <item quantity="other">skills</item>
+    </plurals>
 </resources>

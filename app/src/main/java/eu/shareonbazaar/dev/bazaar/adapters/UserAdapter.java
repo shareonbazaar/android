@@ -2,6 +2,7 @@ package eu.shareonbazaar.dev.bazaar.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,6 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
 import eu.shareonbazaar.dev.bazaar.models.User;
@@ -40,17 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
 
     @Override
     public void onBindViewHolder(UserAdapterViewHolder holder, int position) {
-        User user = mUsers.get(position);
-        String userName = user.getName();
-        String userLocation = user.getLocation();
-        String userImageUrl = user.getPicture();
-
-        holder.userName.setText(userName);
-        holder.userLocation.setText(userLocation);
-        Picasso.with(context)
-                .load(userImageUrl)
-                .transform(new RoundImageTransformation())
-                .into(holder.userPicture);
+        holder.bindView(position);
     }
 
     @Override
@@ -60,7 +53,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
         return mUsers.size();
     }
 
-    public User getUserByPosition(int position) {
+    private User getUserByPosition(int position) {
         return mUsers.get(position);
     }
 
@@ -73,19 +66,44 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
         void onItemClicked(User user);
     }
 
-    public class UserAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+    class UserAdapterViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
-        TextView userName;
-        TextView userLocation;
-        ImageView userPicture;
+        @BindView(R.id.user_name)
+        TextView mUserName;
+        @BindView(R.id.user_location)
+        TextView mUserLocation;
+        @BindView(R.id.user_picture)
+        ImageView mUserPicture;
+        @BindView(R.id.tv_skill_count)
+        TextView mSkillCount;
+        @BindView(R.id.tv_skill_count_label)
+        TextView mSkillCountLabel;
 
-        public UserAdapterViewHolder(View itemView) {
+        UserAdapterViewHolder(View itemView) {
             super(itemView);
-            userName = (TextView) itemView.findViewById(R.id.user_name);
-            userLocation = (TextView) itemView.findViewById(R.id.user_location);
-            userPicture = (ImageView) itemView.findViewById(R.id.user_picture);
-
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
+        }
+
+        void bindView(int position){
+            User user = mUsers.get(position);
+            String userName = user.getName();
+            String userLocation = user.getLocation();
+            String userImageUrl = user.getPicture();
+            int skillCount = user.getSkills().size();
+            String skillCountLabel = itemView.getResources()
+                    .getQuantityString(R.plurals.skill_count_label, skillCount, skillCount);
+
+            Log.d("SKILL COUNT", skillCountLabel);
+
+            mUserName.setText(userName);
+            mUserLocation.setText(userLocation);
+            Picasso.with(context)
+                    .load(userImageUrl)
+                    .transform(new RoundImageTransformation())
+                    .into(mUserPicture);
+            mSkillCount.setText(String.valueOf(skillCount));
+            mSkillCountLabel.setText(skillCountLabel);
         }
 
         @Override
