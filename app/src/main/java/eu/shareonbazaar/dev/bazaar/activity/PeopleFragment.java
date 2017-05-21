@@ -21,12 +21,12 @@ import android.widget.Toast;
 import java.util.List;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.model.User;
-import eu.shareonbazaar.dev.bazaar.model.UsersJsonResponse;
+import eu.shareonbazaar.dev.bazaar.models.User;
+import eu.shareonbazaar.dev.bazaar.models.UsersJsonResponse;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
-import eu.shareonbazaar.dev.bazaar.ui.UserAdapter;
-import eu.shareonbazaar.dev.bazaar.utility.SharedPreference;
+import eu.shareonbazaar.dev.bazaar.adapters.UserAdapter;
+import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -110,6 +110,8 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     private void populateRecyclerView() {
         SharedPreference sharedPreference = new SharedPreference(getContext());
         String token = sharedPreference.retrieveToken(TOKEN);
+
+        //TODO: Check if Token is null or not
 
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
         service.getUsers(token)

@@ -1,15 +1,11 @@
-package eu.shareonbazaar.dev.bazaar.login;
+package eu.shareonbazaar.dev.bazaar.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,12 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.activity.MainActivity;
-import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
-import eu.shareonbazaar.dev.bazaar.model.Authentication;
+import eu.shareonbazaar.dev.bazaar.models.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
-import eu.shareonbazaar.dev.bazaar.utility.SharedPreference;
+import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,14 +48,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
-        String token = sharedPreference.retrieveToken("TOKEN");
+        /*SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
+        String token = sharedPreference.retrieveToken("TOKEN");*/
 
-        if(token.length() != 0){
+        /*if(token.length() != 0){
             loginSuccess();
         }else {
             initViews();
-        }
+        }*/
+        initViews();
     }
 
     private void initViews() {

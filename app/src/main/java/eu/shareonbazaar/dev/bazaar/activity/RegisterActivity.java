@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.login;
+package eu.shareonbazaar.dev.bazaar.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.activity.UsersActivity;
-import eu.shareonbazaar.dev.bazaar.model.Authentication;
+import eu.shareonbazaar.dev.bazaar.models.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
 import eu.shareonbazaar.dev.bazaar.network.UserService;
 import retrofit2.Call;

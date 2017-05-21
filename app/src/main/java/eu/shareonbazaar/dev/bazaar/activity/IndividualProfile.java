@@ -12,8 +12,8 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.lib.RoundImageTransformation;
-import eu.shareonbazaar.dev.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
+import eu.shareonbazaar.dev.bazaar.models.User;
 
 public class IndividualProfile extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.model;
+package eu.shareonbazaar.dev.bazaar.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

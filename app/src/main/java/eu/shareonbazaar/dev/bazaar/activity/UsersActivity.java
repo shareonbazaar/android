@@ -1,16 +1,13 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
+import eu.shareonbazaar.dev.bazaar.adapters.ViewPagerAdapter;
 
 public class UsersActivity extends AppCompatActivity {
 

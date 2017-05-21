@@ -1,30 +1,38 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.login.LoginActivity;
-import eu.shareonbazaar.dev.bazaar.login.RegisterActivity;
-import eu.shareonbazaar.dev.bazaar.utility.ViewPagerAdapter;
+import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
+import eu.shareonbazaar.dev.bazaar.adapters.ViewPagerAdapter;
 
 public class OnboardingActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private int[] layouts;
+    public static final String TOKEN = "TOKEN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
+        if(!sharedPreference.isFirstTime(TOKEN)){
+            Toast.makeText(getApplicationContext(), sharedPreference.retrieveToken(TOKEN), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(OnboardingActivity.this, UsersActivity.class);
+            startActivity(intent);
+        }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         dotsLayout=(LinearLayout)findViewById(R.id.layoutDots);

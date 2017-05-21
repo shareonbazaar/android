@@ -1,11 +1,8 @@
 package eu.shareonbazaar.dev.bazaar.network;
 
-import java.util.List;
-import java.util.Map;
-
-import eu.shareonbazaar.dev.bazaar.model.Authentication;
-import eu.shareonbazaar.dev.bazaar.model.User;
-import eu.shareonbazaar.dev.bazaar.model.UsersJsonResponse;
+import eu.shareonbazaar.dev.bazaar.models.Authentication;
+import eu.shareonbazaar.dev.bazaar.models.User;
+import eu.shareonbazaar.dev.bazaar.models.UsersJsonResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -13,7 +10,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.QueryMap;
 
 public interface UserService {
 

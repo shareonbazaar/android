@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.lib;
+package eu.shareonbazaar.dev.bazaar.utilities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.ui;
+package eu.shareonbazaar.dev.bazaar.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +14,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.lib.RoundImageTransformation;
-import eu.shareonbazaar.dev.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
+import eu.shareonbazaar.dev.bazaar.models.User;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterViewHolder> {

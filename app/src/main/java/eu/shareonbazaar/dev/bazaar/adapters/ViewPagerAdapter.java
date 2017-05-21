@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.utility;
+package eu.shareonbazaar.dev.bazaar.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
