@@ -49,6 +49,7 @@
 
     <string name="default_skill_count">0</string>
     <string name="default_skill_count_label">skills</string>
+    <string name="user_profile_image">User profile image</string>
 
     <plurals name="skill_count_label">
         <item quantity="zero">skill</item>

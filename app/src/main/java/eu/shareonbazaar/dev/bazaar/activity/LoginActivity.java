@@ -1,17 +1,25 @@
 package eu.shareonbazaar.dev.bazaar.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.models.Authentication;
@@ -32,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox checkboxRemember;
     private Button btnFacebook;
     private Button btnGoogle;
+
+    private static final int REQUEST_INTERNET_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +117,11 @@ public class LoginActivity extends AppCompatActivity {
         // TODO: make a network call to check credentials
     }
 
-    private void loginSuccess() {
-        startActivity(new Intent(LoginActivity.this, UsersActivity.class));
+    private void loginSuccess(Authentication authentication) {
+        Intent userActivityIntent = new Intent(LoginActivity.this, UsersActivity.class);
+        userActivityIntent.putExtra("Personal profile", authentication);
+        startActivity(userActivityIntent);
+
         finish();
     }
 
@@ -151,25 +164,75 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-            service.loginUser(etEmail.getText().toString(),
-                    etPassword.getText().toString())
-                    .enqueue(new Callback<Authentication>() {
-                        @Override
-                        public void onResponse(Call<Authentication> call, Response<Authentication> response) {
-                            try {
-                                authenticate(response.body());
+            if(isGreaterOrEqualVersionM()){
+                requestPermission(Manifest.permission.INTERNET, REQUEST_INTERNET_PERMISSION);
+            }
+            else {
+                login();
+            }
+        }
+    }
 
-                            } catch (Exception e) {
-                                Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
+    private void login(){
+        UserService service = RetrofitTemplate.retrofit.create(UserService.class);
+        service.loginUser(etEmail.getText().toString(),
+                etPassword.getText().toString())
+                .enqueue(new Callback<Authentication>() {
+                    @Override
+                    public void onResponse(Call<Authentication> call, Response<Authentication> response) {
+                        try {
+                            authenticate(response.body());
 
-                        @Override
-                        public void onFailure(Call<Authentication> call, Throwable t) {
-                            Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+
+                    @Override
+                    public void onFailure(Call<Authentication> call, Throwable t) {
+                        Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
+                        Log.d("NETWORK", t.toString());
+                    }
+                });
+    }
+
+    private boolean isGreaterOrEqualVersionM(){
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
+    private void requestPermission(String permission, int requestCode){
+        if (ContextCompat.checkSelfPermission(LoginActivity.this, permission) != PackageManager.PERMISSION_GRANTED) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this, permission)) {
+                //This is called if user has denied the permission before
+                //In this case I am just asking the permission again
+                ActivityCompat.requestPermissions(LoginActivity.this, new String[]{permission}, requestCode);
+            }
+            else {
+                ActivityCompat.requestPermissions(LoginActivity.this, new String[]{permission}, requestCode);
+            }
+        }
+        else {
+            Toast.makeText(this, "" + permission + " is already granted.", Toast.LENGTH_SHORT).show();
+            switch (requestCode){
+                case REQUEST_INTERNET_PERMISSION:
+                    login();
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        int permissionGranted = PackageManager.PERMISSION_GRANTED;
+        if(ActivityCompat.checkSelfPermission(this, permissions[0]) == permissionGranted){
+            switch (requestCode){
+                case REQUEST_INTERNET_PERMISSION:
+                    login();
+                    break;
+            }
         }
     }
 
@@ -195,7 +258,7 @@ public class LoginActivity extends AppCompatActivity {
 
             //TODO: Save user id
 
-            loginSuccess();
+            loginSuccess(authentication);
         }else{
             Snackbar.make(relativeLayout, error, Snackbar.LENGTH_LONG).show();
         }

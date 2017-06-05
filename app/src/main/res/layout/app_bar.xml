@@ -19,6 +19,14 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary">
 
+            <ImageView
+                android:id="@+id/user_profile_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity = "end"
+                android:contentDescription="@string/user_profile_image"
+                android:src="@drawable/bazaar_logo"/>
+
             <!--<TextView
                 android:id="@+id/toolbar_title"
                 android:text="@string/app_name"

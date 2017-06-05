@@ -13,7 +13,7 @@ import retrofit2.http.Path;
 
 public interface UserService {
 
-    @GET("/api/users")
+    @GET("api/users")
     Call<UsersJsonResponse> getUsers(@Header("token") String token);
 
     @GET("api/users/{id}")
