@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.activity;
+package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 
 import eu.shareonbazaar.dev.bazaar.R;
 
+public class Board_2_Fragment extends Fragment {
 
-public class Board_1_Fragment extends Fragment {
-
-    public Board_1_Fragment() {
+    public Board_2_Fragment() {
     }
 
     @Override
@@ -24,7 +23,7 @@ public class Board_1_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate layout for this fragment
-        return inflater.inflate(R.layout.fragment_board_1, container, false);
+        return inflater.inflate(R.layout.fragment_board_2, container, false);
     }
 
 

@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.activity;
+package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.Manifest;
 import android.content.Intent;

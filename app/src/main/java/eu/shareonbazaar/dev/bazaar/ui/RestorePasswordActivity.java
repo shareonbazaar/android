@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.activity;
+package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.activity;
+package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
 import eu.shareonbazaar.dev.bazaar.adapters.ViewPagerAdapter;
 
 public class OnboardingActivity extends AppCompatActivity {
@@ -27,12 +25,12 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
-        SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
+        /*SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
         if(!sharedPreference.isFirstTime(TOKEN)){
             Toast.makeText(getApplicationContext(), sharedPreference.retrieveToken(TOKEN), Toast.LENGTH_LONG).show();
             Intent intent = new Intent(OnboardingActivity.this, UsersActivity.class);
             startActivity(intent);
-        }
+        }*/
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         dotsLayout=(LinearLayout)findViewById(R.id.layoutDots);
