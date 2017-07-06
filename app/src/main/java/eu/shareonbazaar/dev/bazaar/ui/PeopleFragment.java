@@ -121,7 +121,6 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
                     public void onResponse(Call<UsersJsonResponse> call,
                                            Response<UsersJsonResponse> response) {
                         loadUsers(response.body());
-                        //Log.d("SUCCESS", "Im done!!!");
                         hideProgressBar();
                         showFab();
                     }

@@ -50,6 +50,12 @@
     <string name="default_skill_count">0</string>
     <string name="default_skill_count_label">skills</string>
     <string name="user_profile_image">User profile image</string>
+    <string name="welcome_to_bazaar">Welcome to Bazaar</string>
+    <string name="welcome_desc">A place for empowerment for both locals and newcomers</string>
+    <string name="available_skills">What skill can you share?</string>
+    <string name="available_skills_desc">We currently offer over 30 skills ranging from leisure activities to professional competencies</string>
+    <string name="facebook_login">Facebook Login Image</string>
+    <string name="gplus_login">Google plus image login</string>
 
     <plurals name="skill_count_label">
         <item quantity="zero">skill</item>

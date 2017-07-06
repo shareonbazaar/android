@@ -8,12 +8,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Authentication implements Parcelable{
 
-    @SerializedName("id")
-    @Expose
-    private String id;
     @SerializedName("token")
     @Expose
     private String token;
+    @SerializedName("user")
+    @Expose
+    private LoggedInUser loggedInUser;
     @SerializedName("error")
     @Expose
     private String error;
@@ -21,13 +21,10 @@ public class Authentication implements Parcelable{
     @Expose
     private int status;
 
-    public Authentication(){
-
-    }
 
     protected Authentication(Parcel in) {
-        id = in.readString();
         token = in.readString();
+        loggedInUser = in.readParcelable(LoggedInUser.class.getClassLoader());
         error = in.readString();
         status = in.readInt();
     }
@@ -44,36 +41,20 @@ public class Authentication implements Parcelable{
         }
     };
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getToken() {
         return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public String getError() {
         return error;
     }
 
-    public void setError(String error) {
-        this.error = error;
-    }
-
     public int getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public LoggedInUser getLoggedInUser() {
+        return loggedInUser;
     }
 
     @Override
@@ -83,8 +64,8 @@ public class Authentication implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
         dest.writeString(token);
+        dest.writeParcelable(loggedInUser, flags);
         dest.writeString(error);
         dest.writeInt(status);
     }

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -15,12 +16,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.models.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
@@ -31,25 +33,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    private RelativeLayout relativeLayout;
-    private TextView tvRegister;
-    private TextView tvRestore;
-    private EditText etEmail;
-    private EditText etPassword;
-    private Button btnLogin;
-    private CheckBox checkboxRemember;
-    private Button btnFacebook;
-    private Button btnGoogle;
+    @BindView(R.id.tb_back_to_signup)
+    Toolbar backToSignup;
+    @BindView(R.id.cl_login_mainLayout)
+    ConstraintLayout mainLayout;
+    @BindView(R.id.et_email_field)
+    EditText mEmailField;
+    @BindView(R.id.et_password_field)
+    EditText mPasswordField;
+    @BindView(R.id.btn_login)
+    Button mLogin;
+    @BindView(R.id.tv_restore_password)
+    TextView mRestorePassword;
+    @BindView(R.id.iv_facebook_login)
+    ImageView mFacebookLogin;
+    @BindView(R.id.iv_gplus_login)
+    ImageView mGooglePlusLogin;
 
     private static final int REQUEST_INTERNET_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
-
-        Toolbar backToSignup = (Toolbar) findViewById(R.id.back_to_signup);
+        ButterKnife.bind(this);
 
         backToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,42 +77,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        relativeLayout = (RelativeLayout)findViewById(R.id.login_mainLayout);
-        //tvRegister = (TextView) findViewById(R.id.tvRegister);
-        tvRestore = (TextView) findViewById(R.id.tvRestore);
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
 
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnFacebook = (Button) findViewById(R.id.btnFacebook);
-        btnGoogle = (Button) findViewById(R.id.btnGoogle);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLoginButtonClicked();
             }
         });
-        /*tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });*/
-        tvRestore.setOnClickListener(new View.OnClickListener() {
+
+        mRestorePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RestorePasswordActivity.class));
             }
         });
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
+        mFacebookLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLoginWithFacebookButtonClicked();
             }
         });
 
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
+        mGooglePlusLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLoginWithGoogleButtonClicked();
@@ -131,31 +124,31 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onLoginButtonClicked() {
         // Reset errors.
-        etEmail.setError(null);
-        etPassword.setError(null);
+        mEmailField.setError(null);
+        mPasswordField.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        String email = mEmailField.getText().toString();
+        String password = mPasswordField.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            etPassword.setError(getString(R.string.err_et_pass));
-            focusView = etPassword;
+            mPasswordField.setError(getString(R.string.err_et_pass));
+            focusView = mPasswordField;
             cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            etEmail.setError(getString(R.string.err_et_email));
-            focusView = etEmail;
+            mEmailField.setError(getString(R.string.err_et_email));
+            focusView = mEmailField;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            etEmail.setError(getString(R.string.error_invalid_email));
-            focusView = etEmail;
+            mEmailField.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailField;
             cancel = true;
         }
 
@@ -175,8 +168,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(){
         UserService service = RetrofitTemplate.retrofit.create(UserService.class);
-        service.loginUser(etEmail.getText().toString(),
-                etPassword.getText().toString())
+        service.loginUser(mEmailField.getText().toString(),
+                mPasswordField.getText().toString())
                 .enqueue(new Callback<Authentication>() {
                     @Override
                     public void onResponse(Call<Authentication> call, Response<Authentication> response) {
@@ -184,13 +177,13 @@ public class LoginActivity extends AppCompatActivity {
                             authenticate(response.body());
 
                         } catch (Exception e) {
-                            Snackbar.make(relativeLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(mainLayout, R.string.login_fail, Snackbar.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Authentication> call, Throwable t) {
-                        Snackbar.make(relativeLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(mainLayout, t.toString(), Snackbar.LENGTH_SHORT).show();
                         Log.d("NETWORK", t.toString());
                     }
                 });
@@ -213,7 +206,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(this, "" + permission + " is already granted.", Toast.LENGTH_SHORT).show();
             switch (requestCode){
                 case REQUEST_INTERNET_PERMISSION:
                     login();
@@ -250,17 +242,16 @@ public class LoginActivity extends AppCompatActivity {
         int status = authentication.getStatus();
         String error = authentication.getError();
         String token = authentication.getToken();
-        String id = authentication.getId();
 
         if(status == 200){
             SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
             sharedPreference.saveToken("TOKEN", token);
 
-            //TODO: Save user id
+            //TODO: Save user data
 
             loginSuccess(authentication);
         }else{
-            Snackbar.make(relativeLayout, error, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(mainLayout, error, Snackbar.LENGTH_LONG).show();
         }
     }
 }

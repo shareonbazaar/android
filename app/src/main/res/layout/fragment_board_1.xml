@@ -27,14 +27,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
+                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:textSize="25sp"
-                android:text="Welcome to Bazaar"/>
+                android:text="@string/welcome_to_bazaar"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A place for empowerment"/>
+                android:text="@string/welcome_desc"/>
 
         </LinearLayout>
 

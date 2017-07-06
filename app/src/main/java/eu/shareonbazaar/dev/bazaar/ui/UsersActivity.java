@@ -6,13 +6,21 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.adapters.ViewPagerAdapter;
+import eu.shareonbazaar.dev.bazaar.models.Authentication;
+import eu.shareonbazaar.dev.bazaar.models.LoggedInUser;
+import eu.shareonbazaar.dev.bazaar.models.LoggedInUserProfile;
 import eu.shareonbazaar.dev.bazaar.models.User;
+import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
 
 public class UsersActivity extends AppCompatActivity {
 
@@ -41,7 +49,21 @@ public class UsersActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         Intent parentIntent = getIntent();
-        User user = parentIntent.getExtras().getParcelable("User");
+        Authentication authentication = parentIntent.getExtras().getParcelable("Personal profile");
+        String userImageUrl = authentication.getLoggedInUser()
+                .getUserProfile().getUserImageUrl();
+
+        Picasso.with(this)
+                .load(userImageUrl)
+                .transform(new RoundImageTransformation())
+                .into(userProfile);
+
+        userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "Work in progress!...", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
