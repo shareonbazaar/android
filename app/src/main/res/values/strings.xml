@@ -50,12 +50,24 @@
     <string name="default_skill_count">0</string>
     <string name="default_skill_count_label">skills</string>
     <string name="user_profile_image">User profile image</string>
-    <string name="welcome_to_bazaar">Welcome to Bazaar</string>
-    <string name="welcome_desc">A place for empowerment for both locals and newcomers</string>
-    <string name="available_skills">What skill can you share?</string>
-    <string name="available_skills_desc">We currently offer over 30 skills ranging from leisure activities to professional competencies</string>
     <string name="facebook_login">Facebook Login Image</string>
     <string name="gplus_login">Google plus image login</string>
+
+    <!-- OnBoarding Strings -->
+    <string name="section_1_header">Welcome to Bazaar</string>
+    <string name="section_1_description">A place for empowerment for both locals and newcomers</string>
+    <string name="section_2_header">Share a Skill</string>
+    <string name="section_2_description">
+        We currently offer over 30 skills ranging from leisure activities to professional competencies
+    </string>
+    <string name="section_3_header">Time Banking</string>
+    <string name="section_3_description">
+        With time banking skill exchange is fair and flexible
+    </string>
+    <string name="section_4_header">Our Vision</string>
+    <string name="section_4_description">
+        To create a network where everyone can offer what they are good at
+    </string>
 
     <plurals name="skill_count_label">
         <item quantity="zero">skill</item>

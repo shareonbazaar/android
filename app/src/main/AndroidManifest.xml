@@ -13,14 +13,14 @@
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.UsersActivity"/>
         <activity android:name=".ui.LoginActivity"
-            android:parentActivityName=".ui.OnboardingActivity">
+            android:parentActivityName=".ui.OnBoardingActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.OnboardingActivity"/>
+                android:value=".ui.OnBoardingActivity"/>
         </activity>
         <activity android:name=".ui.RegisterActivity"
-            android:parentActivityName=".ui.OnboardingActivity">
+            android:parentActivityName=".ui.OnBoardingActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.OnboardingActivity"/>
+                android:value=".ui.OnBoardingActivity"/>
         </activity>
         <activity android:name=".ui.RestorePasswordActivity"
             android:parentActivityName=".ui.LoginActivity">
@@ -34,7 +34,7 @@
                 android:value=".ui.UsersActivity" />
 
         </activity>
-        <activity android:name=".ui.OnboardingActivity">
+        <activity android:name=".ui.OnBoardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
