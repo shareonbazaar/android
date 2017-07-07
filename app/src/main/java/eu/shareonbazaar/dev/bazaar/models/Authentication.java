@@ -11,7 +11,7 @@ public class Authentication implements Parcelable{
     @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("user")
+    @SerializedName("data")
     @Expose
     private LoggedInUser loggedInUser;
     @SerializedName("error")

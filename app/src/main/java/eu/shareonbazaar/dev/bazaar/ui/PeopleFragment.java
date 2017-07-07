@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         loadingIndicator = (ProgressBar) frameLayout.findViewById(R.id.pb_loading_indicator);
         networkErrorContainer = (LinearLayout) frameLayout.findViewById(R.id.ll_network_error);
 
-        Button retryConnection = (Button) frameLayout.findViewById(R.id.btn_retry);
+        TextView retryConnection = (TextView) frameLayout.findViewById(R.id.tv_retry);
         retryConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

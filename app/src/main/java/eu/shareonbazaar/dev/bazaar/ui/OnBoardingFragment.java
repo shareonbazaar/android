@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
 
 
 public class OnBoardingFragment extends Fragment {

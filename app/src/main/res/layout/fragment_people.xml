@@ -30,15 +30,14 @@
             android:text="@string/network_error_info"
             android:gravity="center"/>
 
-        <Button
-            android:id="@+id/btn_retry"
+        <TextView
+            android:id="@+id/tv_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/retry"
-            android:textColor="@color/color_white"
-            android:textSize="15sp"
-            android:background="@drawable/custom_button"/>
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

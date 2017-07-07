@@ -38,6 +38,7 @@
                 android:layout_height="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:contentDescription="@string/indicator"
                 android:background="@drawable/indicator_unselected" />
 
             <ImageView
@@ -46,6 +47,7 @@
                 android:layout_height="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:contentDescription="@string/indicator"
                 android:background="@drawable/indicator_unselected" />
 
             <ImageView
@@ -53,6 +55,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="8dp"
                 android:layout_height="8dp"
+                android:contentDescription="@string/indicator"
                 android:background="@drawable/indicator_unselected" />
 
             <ImageView
@@ -60,13 +63,13 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="8dp"
                 android:layout_height="8dp"
+                android:contentDescription="@string/indicator"
                 android:background="@drawable/indicator_unselected" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/onboarding_signup"
-            android:layout_above="@+id/onboarding_signin_prompt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -98,7 +101,7 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="@string/signin"/>
+                android:text="@string/signin" />
 
         </LinearLayout>
 

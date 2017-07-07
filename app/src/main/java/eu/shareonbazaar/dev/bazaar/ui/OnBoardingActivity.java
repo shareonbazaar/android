@@ -11,8 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.adapters.OnBoardingAdapter;
+import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
 
 public class OnBoardingActivity extends AppCompatActivity {
 
@@ -20,12 +23,37 @@ public class OnBoardingActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private int currentPage = 0;
 
+    @BindView(R.id.onboarding_signup)
+    Button signup;
+    @BindView(R.id.onboarding_signin)
+    TextView signin;
+    @BindView(R.id.intro_indicator_0)
+    ImageView mFirstIndicator;
+    @BindView(R.id.intro_indicator_1)
+    ImageView mSecondIndicator;
+    @BindView(R.id.intro_indicator_2)
+    ImageView mThirdIndicator;
+    @BindView(R.id.intro_indicator_3)
+    ImageView mFourthIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
-        Button signup = (Button)findViewById(R.id.onboarding_signup);
+        SharedPreference preference = new SharedPreference(this);
+
+        if(!preference.isFirstTime("TOKEN")){
+            Intent intent = new Intent(this, UsersActivity.class);
+            startActivity(intent);
+        }else {
+            ButterKnife.bind(this);
+            initializeViews();
+        }
+
+    }
+
+    private void initializeViews(){
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +62,6 @@ public class OnBoardingActivity extends AppCompatActivity {
             }
         });
 
-        TextView signin = (TextView)findViewById(R.id.onboarding_signin);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,10 +72,6 @@ public class OnBoardingActivity extends AppCompatActivity {
 
         OnBoardingAdapter OnBoardingAdapter= new OnBoardingAdapter(getSupportFragmentManager());
 
-        ImageView mFirstIndicator = (ImageView) findViewById(R.id.intro_indicator_0);
-        ImageView mSecondIndicator = (ImageView) findViewById(R.id.intro_indicator_1);
-        ImageView mThirdIndicator = (ImageView) findViewById(R.id.intro_indicator_2);
-        ImageView mFourthIndicator = (ImageView) findViewById(R.id.intro_indicator_3);
 
         mIndicators = new ImageView[]{mFirstIndicator, mSecondIndicator,
                 mThirdIndicator, mFourthIndicator};

@@ -10,23 +10,31 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/back_to_signin"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_action_navigate_before"
-            android:contentDescription="@string/signin"/>
+            android:src="@drawable/ic_chevron_right_24dp"
+            android:contentDescription="@string/signin"
+            android:tint="@color/colorPrimaryDark"
+            android:layout_gravity="end"/>
 
         <TextView
             android:id="@+id/toolbar_title"
             android:text="@string/signin"
-            android:textColor="@color/colorPrimaryText"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"/>
 
     </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/logo"/>
 
     <LinearLayout
         android:layout_width="match_parent"

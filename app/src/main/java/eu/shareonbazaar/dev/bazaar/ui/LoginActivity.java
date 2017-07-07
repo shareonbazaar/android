@@ -2,6 +2,7 @@ package eu.shareonbazaar.dev.bazaar.ui;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -112,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginSuccess(Authentication authentication) {
         Intent userActivityIntent = new Intent(LoginActivity.this, UsersActivity.class);
-        userActivityIntent.putExtra("Personal profile", authentication);
+        // userActivityIntent.putExtra("Personal profile", authentication);
         startActivity(userActivityIntent);
 
         finish();
@@ -244,6 +245,9 @@ public class LoginActivity extends AppCompatActivity {
         String token = authentication.getToken();
 
         if(status == 200){
+            /*SharedPreferences.Editor editor = getSharedPreferences("PREF", MODE_PRIVATE).edit();
+            editor.putString("TOKEN", token);
+            editor.apply();*/
             SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
             sharedPreference.saveToken("TOKEN", token);
 

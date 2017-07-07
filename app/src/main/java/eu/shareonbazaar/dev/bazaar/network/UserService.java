@@ -19,6 +19,9 @@ public interface UserService {
     @GET("api/users/{id}")
     Call<User> getUser(@Header("token") String token, @Path("id") String id);
 
+    @POST("api/users")
+    Call<Authentication> getUser(@Header("token") String token);
+
     @FormUrlEncoded
     @POST("api/login")
     Call<Authentication> loginUser(@Field("email") String email,

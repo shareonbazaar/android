@@ -88,13 +88,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
         void bindView(int position){
             User user = mUsers.get(position);
             String userName = user.getName();
-            String userLocation = user.getLocation();
+            String userLocation = (user.getLocation().length() > 0 ) ? user.getLocation() : "Not set";
             String userImageUrl = user.getPicture();
             int skillCount = user.getSkills().size();
             String skillCountLabel = itemView.getResources()
                     .getQuantityString(R.plurals.skill_count_label, skillCount, skillCount);
-
-            Log.d("SKILL COUNT", skillCountLabel);
 
             mUserName.setText(userName);
             mUserLocation.setText(userLocation);
