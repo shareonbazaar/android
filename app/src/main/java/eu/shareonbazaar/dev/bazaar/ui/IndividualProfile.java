@@ -8,8 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +43,8 @@ public class IndividualProfile extends AppCompatActivity {
     RecyclerView skillsList;
     @BindView(R.id.rv_interest_list)
     RecyclerView interestList;
+    @BindView(R.id.iv_bookmark_user)
+    ImageView bookmarkUser;
 
     private CustomJsonAdapter customJsonAdapter;
     public static final String TOKEN = "TOKEN";
@@ -64,6 +68,13 @@ public class IndividualProfile extends AppCompatActivity {
         Intent parentIntent = getIntent();
         User user = parentIntent.getExtras().getParcelable("User");
         initView(user);
+
+        bookmarkUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Api needed here", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

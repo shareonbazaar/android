@@ -34,4 +34,7 @@ public interface UserService {
                                     @Field("confirmPassword") String confirmPassword,
                                     @Field("first_name") String first_name,
                                     @Field("last_name") String last_name);
+
+    @POST("api/transactions")
+    Call<Authentication> getTransactions(@Header("token") String token);
 }

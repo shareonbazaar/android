@@ -47,7 +47,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.PersonalProfileActivity"></activity>
+        <activity android:name=".ui.PersonalProfileActivity" />
+        <activity android:name=".ui.SearchActivity"></activity>
     </application>
 
 </manifest>
