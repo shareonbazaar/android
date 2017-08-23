@@ -2,6 +2,11 @@
     <string name="app_name">Bazaar</string>
     <string name="profile_image">User profile image</string>
 
+    <!--======================== Bottom Navigation ======================-->
+    <string name="nav_people">People</string>
+    <string name="nav_bookmarks">Bookmarks</string>
+    <string name="nav_wallet">Wallet</string>
+
     <string name="btn_restore">Restore Password</string>
     <string name="btn_register">Sign up</string>
     <string name="hint_et_email">Email</string>
@@ -31,6 +36,7 @@
     <string name="action_search">Search</string>
     <string name="action_settings">Settings</string>
     <string name="app_label">Search</string>
+    <string name="search_radio_options">I want to</string>
     <string name="search_hint">People, skills...</string>
     <string name="request_exchange">Request Exchange</string>
     <string name="skill_label">Skills</string>

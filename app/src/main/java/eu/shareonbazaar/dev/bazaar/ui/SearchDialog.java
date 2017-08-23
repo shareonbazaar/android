@@ -3,70 +3,55 @@ package eu.shareonbazaar.dev.bazaar.ui;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import eu.shareonbazaar.dev.bazaar.R;
 
 public class SearchDialog extends DialogFragment{
 
-    private static SearchDialogListener mListener;
-
-    public SearchDialog() {
+    @OnClick(R.id.iv_close_dialog)
+    public void closeDialog() {
+        this.dismiss();
     }
 
-    public static SearchDialog newInstance(SearchDialogListener listener){
-        SearchDialog searchDialog = new SearchDialog();
-        Bundle args = new Bundle();
-        args.putString("title", "Search");
-        searchDialog.setArguments(args);
-
-        mListener = listener;
-        return searchDialog;
-    }
-
-    /* The activity that creates an instance of this dialog fragment must
-     * implement this interface in order to receive event callbacks.
-     * Each method passes the DialogFragment in case the host needs to query it. */
-    public interface SearchDialogListener {
-        public void onDialogPositiveClick(SearchDialog dialog);
-        public void onDialogNegativeClick(SearchDialog dialog);
-    }
+//    @BindView(R.id.iv_close_dialog)
+//    ImageView mCloseDialog;
+    @BindView(R.id.tv_search_surprise)
+    TextView mSurprise;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.search_dialog, container, false);
+        View rootView = inflater.inflate(R.layout.search_dialog, container, false);
+        ButterKnife.bind(this, rootView);
+
+        return rootView;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Build the dialog and set up the button click handlers
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View viewInflater = inflater.inflate(R.layout.search_dialog, null);
-        //final EditText mDecryptionKey = (EditText)viewInflater.findViewById(R.id.et_decryption_code);
-
-        builder.setView(viewInflater)
-                .setPositiveButton(R.string.dialog_surprise_me, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(SearchDialog.this);
-                    }
-                })
-                .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogNegativeClick(SearchDialog.this);
-                    }
-                });
-        return builder.create();
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
     }
+
 }

@@ -32,8 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterClickListener,
-        SearchDialog.SearchDialogListener{
+public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterClickListener{
 
     public static final String TOKEN = "TOKEN";
 
@@ -68,13 +67,12 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate layout for this fragment
-        FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_people, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_people, container, false);
 
-        loadingIndicator = (ProgressBar) frameLayout.findViewById(R.id.pb_loading_indicator);
-        networkErrorContainer = (LinearLayout) frameLayout.findViewById(R.id.ll_network_error);
+        loadingIndicator = (ProgressBar) rootView.findViewById(R.id.pb_loading_indicator);
+        networkErrorContainer = (LinearLayout) rootView.findViewById(R.id.ll_network_error);
 
-        TextView retryConnection = (TextView) frameLayout.findViewById(R.id.tv_retry);
+        TextView retryConnection = (TextView) rootView.findViewById(R.id.tv_retry);
         retryConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,15 +81,7 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
             }
         });
 
-        fab = (FloatingActionButton) frameLayout.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
-
-        recyclerView = (RecyclerView) frameLayout.findViewById(R.id.user_list);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.user_list);
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -100,12 +90,7 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         populateRecyclerView();
         hideNetworkError();
 
-        return frameLayout;
-    }
-
-    private void showDialog(){
-        DialogFragment dialog = SearchDialog.newInstance(this);
-        dialog.show(getFragmentManager(), "SearchDialog");
+        return rootView;
     }
 
     private void populateRecyclerView() {
@@ -123,7 +108,7 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
                                            Response<UsersJsonResponse> response) {
                         loadUsers(response.body());
                         hideProgressBar();
-                        showFab();
+//                        showFab();
                     }
 
                     @Override
@@ -133,12 +118,12 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
                     }
                 });
     }
-    private void hideFab(){
-        fab.setVisibility(View.INVISIBLE);
-    }
-    private void showFab(){
-        fab.setVisibility(View.VISIBLE);
-    }
+//    private void hideFab(){
+//        fab.setVisibility(View.INVISIBLE);
+//    }
+//    private void showFab(){
+//        fab.setVisibility(View.VISIBLE);
+//    }
 
     private void hideProgressBar(){
         loadingIndicator.setVisibility(View.INVISIBLE);
@@ -147,13 +132,13 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     private void hideNetworkError(){
         networkErrorContainer.setVisibility(View.INVISIBLE);
         loadingIndicator.setVisibility(View.VISIBLE);
-        hideFab();
+//        hideFab();
     }
 
     private void showNetworkError(){
         networkErrorContainer.setVisibility(View.VISIBLE);
         hideProgressBar();
-        hideFab();
+//        hideFab();
     }
 
     @Override
@@ -166,12 +151,4 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         super.onDetach();
     }
 
-    @Override
-    public void onDialogPositiveClick(SearchDialog dialog) {
-        Toast.makeText(getContext(), "I was clicked", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDialogNegativeClick(SearchDialog dialog) {
-    }
 }
