@@ -3,20 +3,33 @@ package eu.shareonbazaar.dev.bazaar.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.models.UsersJsonResponse;
+import eu.shareonbazaar.dev.bazaar.models.WalletJsonResponse;
+import eu.shareonbazaar.dev.bazaar.network.RetrofitTemplate;
+import eu.shareonbazaar.dev.bazaar.network.UserService;
+import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-/**
- * Fragment to display Bazaar wallet information
- */
 public class WalletFragment extends Fragment {
 
-    /**
-     * requires empty constructor
-     */
+    public static final String TOKEN = "TOKEN";
+
+    @BindView(R.id.tv_wallet)
+    TextView mJSON;
+
     public WalletFragment() {
     }
 
@@ -25,30 +38,36 @@ public class WalletFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * Sets up the fragment
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return container layout
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate layout for this fragment
-        return inflater.inflate(R.layout.fragment_wallet, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
+        ButterKnife.bind(this, rootView);
+
+        return rootView;
     }
 
+    private void fetchTransation(){
+        SharedPreference sharedPreference = new SharedPreference(getContext());
+        String token = sharedPreference.retrieveToken(TOKEN);
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
+        //TODO: Check if Token is null or not
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
+        UserService service = RetrofitTemplate.retrofit.create(UserService.class);
+        service.getTransactions(token)
+                .enqueue(new Callback<ArrayList<WalletJsonResponse>>() {
+
+                    @Override
+                    public void onResponse(Call<ArrayList<WalletJsonResponse>> call,
+                                           Response<ArrayList<WalletJsonResponse>> response) {
+//                        mJSON.setText(response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<WalletJsonResponse>> call, Throwable t) {
+                        Log.d("LOG_TAG", t.getMessage());
+                    }
+                });
     }
 
 }

@@ -1,8 +1,12 @@
 package eu.shareonbazaar.dev.bazaar.network;
 
+import java.util.ArrayList;
+
 import eu.shareonbazaar.dev.bazaar.models.Authentication;
+import eu.shareonbazaar.dev.bazaar.models.SkillCategory;
 import eu.shareonbazaar.dev.bazaar.models.User;
 import eu.shareonbazaar.dev.bazaar.models.UsersJsonResponse;
+import eu.shareonbazaar.dev.bazaar.models.WalletJsonResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -36,5 +40,9 @@ public interface UserService {
                                     @Field("last_name") String last_name);
 
     @POST("api/transactions")
-    Call<Authentication> getTransactions(@Header("token") String token);
+    Call<ArrayList<WalletJsonResponse>> getTransactions(@Header("token") String token);
+
+    @GET("api/categories")
+    Call<ArrayList<SkillCategory>> getSkills();
+
 }

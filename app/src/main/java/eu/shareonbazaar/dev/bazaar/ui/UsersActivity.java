@@ -1,5 +1,8 @@
 package eu.shareonbazaar.dev.bazaar.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -27,6 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.os.Build.VERSION_CODES.M;
+
 public class UsersActivity extends AppCompatActivity {
 
     private PeopleFragment peopleFragment;
@@ -36,6 +42,9 @@ public class UsersActivity extends AppCompatActivity {
 
     private static final String AUTHENTICATION_OBJECT = "Personal profile";
     private Authentication authentication;
+    private Target target;
+
+    MenuItem menuItem;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -66,7 +75,7 @@ public class UsersActivity extends AppCompatActivity {
         if(savedInstanceState != null){
             Log.d("SAVED", "Im here");
             authentication = savedInstanceState.getParcelable(AUTHENTICATION_OBJECT);
-//            initializeUserImage();
+            initializeUserImage();
         }else{
             fetchUser();
         }
@@ -111,7 +120,7 @@ public class UsersActivity extends AppCompatActivity {
                                            Response<Authentication> response) {
                         authentication = response.body();
                         Log.d("FETCH", "onResponse: " + authentication.getError());
-//                        initializeUserImage();
+                        initializeUserImage();
                     }
 
                     @Override
@@ -125,13 +134,38 @@ public class UsersActivity extends AppCompatActivity {
         String userImageUrl = authentication.getLoggedInUser()
                 .getUserProfile().getUserImageUrl();
 
-        MenuItem userProfile = toolbar.getMenu().findItem(R.id.action_profile_image);
+        Log.d("Image URL", userImageUrl);
+
+        target = new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                Drawable d = new BitmapDrawable(getResources(), bitmap);
+                menuItem.setIcon(d);
+
+                Log.d("SUCCESS", "Success loading bitmap.");
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+                Log.d("ERROR", "Error loading bitmap.");
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                Log.d("PREPARE", "Prepare loading bitmap.");
+            }
+        };
+
+        float density = getApplicationContext().getResources().getDisplayMetrics().density;
+        int px = (int) (24 * density);
 
         Picasso.with(this)
                 .load(userImageUrl)
                 .transform(new RoundImageTransformation())
                 .error(R.drawable.ic_account_circle_24dp)
-                .into((Target) userProfile);
+                .resize(px, px)
+                .centerCrop()
+                .into(target);
 
         /*userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +196,7 @@ public class UsersActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+        menuItem = menu.findItem(R.id.action_profile_image);
         return true;
     }
 
@@ -178,4 +213,38 @@ public class UsersActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    /*@Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        final MenuItem menuItem = menu.findItem(R.id.action_profile_image);
+
+        Picasso.with(getApplicationContext())
+                .load(R.drawable.ic_account_circle_24dp)
+                .transform(new RoundImageTransformation())
+                .error(R.drawable.ic_account_circle_24dp)
+                .into(new Target()
+                {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from)
+                    {
+                        Drawable d = new BitmapDrawable(getResources(), bitmap);
+                        menuItem.setIcon(d);
+                        *//*ab.setDisplayShowHomeEnabled(true);
+                        ab.setDisplayHomeAsUpEnabled(true);*//*
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable)
+                    {
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable)
+                    {
+                    }
+                });
+
+        return true;
+    }*/
 }
