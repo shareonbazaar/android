@@ -14,15 +14,15 @@ This repository is to keep track of the development of the mobile version of the
 * Import to Android studio and wait for gradle build
 * Explore folders to understand workflow
 
-## Architecture (MVVM)
-Documentation coming soon...
+## Architecture (MVP)
+Currently porting...
 
 ## Contribution guidelines
 
 * Design mockups for User Interfaces first (if working on a new UI or making adjustments)
 * Write method/function signature
 * Write tests for each method/function signature (test first programming paradigm)
-* Then write method/functionbody to pass the test
+* Then write method/function body to pass the test
 * Each method must solve one and only one task
 * Others would come as we progress on development
 
