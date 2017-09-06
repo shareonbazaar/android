@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import eu.shareonbazaar.dev.bazaar.ui.OnBoardingFragment;
+import eu.shareonbazaar.dev.bazaar.onboarding.OnBoardingFragment;
 
 public class OnBoardingAdapter extends FragmentPagerAdapter {
     private int sectionCount = 4;

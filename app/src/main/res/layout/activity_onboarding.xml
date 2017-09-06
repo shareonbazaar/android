@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:paddingBottom="30dp"
     android:background="@color/light_gray"
-    tools:context="eu.shareonbazaar.dev.bazaar.ui.OnBoardingActivity">
+    tools:context="eu.shareonbazaar.dev.bazaar.onboarding.OnBoardingActivity">
 
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"

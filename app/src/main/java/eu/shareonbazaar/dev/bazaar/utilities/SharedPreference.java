@@ -8,7 +8,7 @@ public class SharedPreference {
     private SharedPreferences sharedPref;
 
     public SharedPreference(Context context) {
-        sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        sharedPref = context.getSharedPreferences(PREF_NAME, context.MODE_PRIVATE);
     }
 
     public boolean isFirstTime(String key){

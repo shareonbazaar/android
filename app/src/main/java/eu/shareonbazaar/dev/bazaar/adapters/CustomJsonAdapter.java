@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.models.JsonObject;
-import eu.shareonbazaar.dev.bazaar.models.Languages;
+import eu.shareonbazaar.dev.bazaar.model.JsonObject;
+import eu.shareonbazaar.dev.bazaar.model.Languages;
 
 public class CustomJsonAdapter extends RecyclerView.Adapter<CustomJsonAdapter.CustomJsonAdapterViewHolder>{
 

@@ -2,7 +2,6 @@ package eu.shareonbazaar.dev.bazaar.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,19 +11,19 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
+import eu.shareonbazaar.dev.bazaar.model.people.User;
 import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
-import eu.shareonbazaar.dev.bazaar.models.User;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterViewHolder> {
 
     private static UserAdapterClickListener mClickListener;
-    private List<User> mUsers;
+    private ArrayList<User> mUsers;
     private Context context;
 
     public UserAdapter(UserAdapterClickListener clickListener) {
@@ -57,7 +56,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterVie
         return mUsers.get(position);
     }
 
-    public void setUserData(List<User> users){
+    public void setUserData(ArrayList<User> users){
         mUsers = users;
         notifyDataSetChanged();
     }

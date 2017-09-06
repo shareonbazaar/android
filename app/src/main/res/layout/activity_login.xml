@@ -48,8 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/tb_back_to_signup"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="32dp"/>
-
+        android:layout_marginTop="25dp"/>
 
     <LinearLayout
         android:id="@+id/ll_form_container"
@@ -61,6 +60,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_login_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:visibility="invisible"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

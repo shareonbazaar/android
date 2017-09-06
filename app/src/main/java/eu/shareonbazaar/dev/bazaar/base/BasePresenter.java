@@ -1,5 +1,7 @@
 package eu.shareonbazaar.dev.bazaar.base;
 
+import android.content.Context;
+
 public interface BasePresenter {
-    void start();
+    void start(Context context);
 }
