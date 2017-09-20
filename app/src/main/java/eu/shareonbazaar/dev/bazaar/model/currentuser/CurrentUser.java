@@ -27,6 +27,9 @@ public class CurrentUser implements Parcelable{
     @SerializedName("aboutMe")
     @Expose
     private String userDescription;
+    @SerializedName("bookmarks")
+    @Expose
+    private ArrayList<String> bookmarks;
     @SerializedName("_skills")
     @Expose
     private ArrayList<Skill> skills;
@@ -34,12 +37,14 @@ public class CurrentUser implements Parcelable{
     @Expose
     private ArrayList<Interest> interests;
 
-    private CurrentUser(Parcel in) {
+
+    protected CurrentUser(Parcel in) {
         userId = in.readString();
         userEmail = in.readString();
         userProfile = in.readParcelable(CurrentUserProfile.class.getClassLoader());
         userCoins = in.readInt();
         userDescription = in.readString();
+        bookmarks = in.createStringArrayList();
         skills = in.createTypedArrayList(Skill.CREATOR);
         interests = in.createTypedArrayList(Interest.CREATOR);
     }
@@ -96,6 +101,14 @@ public class CurrentUser implements Parcelable{
         this.userDescription = userDescription;
     }
 
+    public ArrayList<String> getBookmarks() {
+        return bookmarks;
+    }
+
+    public void setBookmarks(ArrayList<String> bookmarks) {
+        this.bookmarks = bookmarks;
+    }
+
     public ArrayList<Skill> getSkills() {
         return skills;
     }
@@ -124,6 +137,7 @@ public class CurrentUser implements Parcelable{
         dest.writeParcelable(userProfile, flags);
         dest.writeInt(userCoins);
         dest.writeString(userDescription);
+        dest.writeStringList(bookmarks);
         dest.writeTypedList(skills);
         dest.writeTypedList(interests);
     }

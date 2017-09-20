@@ -2,6 +2,7 @@ package eu.shareonbazaar.dev.bazaar.mainactivity;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import eu.shareonbazaar.dev.bazaar.model.login.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.ConnectionSetup;
@@ -44,6 +45,7 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
                     @Override
                     public void onFailure(Call<Authentication> call, Throwable t) {
                         connectionError();
+                        Log.d("FAILED", "Failed fetching");
                     }
                 });
     }
@@ -51,10 +53,13 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
     @Override
     public void checkCurrentUserJson(Authentication authentication) {
         // TODO: Check for error authentication.getError()
-
+        if(authentication.getError() == null){
+            mMainView.initializeCurrentUserDetails(authentication.getCurrentUser());
+        }
     }
 
     @Override
     public void connectionError() {
+
     }
 }

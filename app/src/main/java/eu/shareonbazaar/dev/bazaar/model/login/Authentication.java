@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import eu.shareonbazaar.dev.bazaar.model.LoggedInUser;
 import eu.shareonbazaar.dev.bazaar.model.currentuser.CurrentUser;
 
 public class Authentication implements Parcelable{
@@ -14,7 +13,7 @@ public class Authentication implements Parcelable{
     @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("user")
+    @SerializedName("data")
     @Expose
     private CurrentUser currentUser;
     @SerializedName("error")
@@ -27,7 +26,7 @@ public class Authentication implements Parcelable{
 
     private Authentication(Parcel in) {
         token = in.readString();
-        currentUser = in.readParcelable(LoggedInUser.class.getClassLoader());
+        currentUser = in.readParcelable(CurrentUser.class.getClassLoader());
         error = in.readString();
         status = in.readInt();
     }

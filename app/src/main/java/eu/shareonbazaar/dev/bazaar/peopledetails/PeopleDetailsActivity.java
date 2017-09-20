@@ -8,11 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,13 +21,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.adapters.CustomJsonAdapter;
-import eu.shareonbazaar.dev.bazaar.model.JsonObject;
-import eu.shareonbazaar.dev.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.model.people.User;
+import eu.shareonbazaar.dev.bazaar.model.skill.Skill;
 import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
 
 public class PeopleDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.tb_general_toolbar)
+    @BindView(R.id.tl_people_toolbar)
     Toolbar toolbar;
     @BindView(R.id.img_profile_user_image)
     ImageView profileImage;
@@ -35,16 +35,12 @@ public class PeopleDetailsActivity extends AppCompatActivity {
     TextView userNameTextView;
     @BindView(R.id.tv_profile_location)
     TextView locationTextView;
-    @BindView(R.id.tv_profile_hometown)
-    TextView hometownTextView;
-    @BindView(R.id.tv_about_me)
+    @BindView(R.id.tv_profile_about)
     TextView aboutMeTextView;
     @BindView(R.id.rv_skills_list)
     RecyclerView skillsList;
     @BindView(R.id.rv_interest_list)
     RecyclerView interestList;
-    @BindView(R.id.iv_bookmark_user)
-    ImageView bookmarkUser;
 
     private CustomJsonAdapter customJsonAdapter;
     public static final String TOKEN = "TOKEN";
@@ -68,13 +64,7 @@ public class PeopleDetailsActivity extends AppCompatActivity {
         Intent parentIntent = getIntent();
         User user = parentIntent.getExtras().getParcelable("User");
         initView(user);
-
-        bookmarkUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Api needed here", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Toast.makeText(getApplicationContext(), "Api needed here", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -98,17 +88,17 @@ public class PeopleDetailsActivity extends AppCompatActivity {
             String location = (user.getLocation().length() > 0) ? user.getLocation() : emptyFieldPlaceholder;
             locationTextView.setText(location);
             String hometown = (user.getHometown().length() > 0) ? user.getHometown() : emptyFieldPlaceholder;
-            hometownTextView.setText(hometown);
+            // hometownTextView.setText(hometown);
             String aboutMe = (user.getAboutMe() != null) ? user.getAboutMe() : emptyFieldPlaceholder;
             aboutMeTextView.setText(aboutMe);
 
-            ArrayList<JsonObject> skills = user.getSkills();
+            ArrayList<Skill> skills = user.getSkills();
             Log.d("SIZE", ">" + user.getSkills().size());
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            /*LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             customJsonAdapter = new CustomJsonAdapter();
             customJsonAdapter.setJsonData(skills);
             skillsList.setLayoutManager(layoutManager);
-            skillsList.setAdapter(customJsonAdapter);
+            skillsList.setAdapter(customJsonAdapter);*/
         }
     }
 }

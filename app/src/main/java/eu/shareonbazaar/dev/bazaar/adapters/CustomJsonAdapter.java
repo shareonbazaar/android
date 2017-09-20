@@ -8,13 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.model.JsonObject;
-import eu.shareonbazaar.dev.bazaar.model.Languages;
+import eu.shareonbazaar.dev.bazaar.model.Language;
 
 public class CustomJsonAdapter extends RecyclerView.Adapter<CustomJsonAdapter.CustomJsonAdapterViewHolder>{
 
@@ -61,12 +62,12 @@ public class CustomJsonAdapter extends RecyclerView.Adapter<CustomJsonAdapter.Cu
 
         void bindView(int position){
             JsonObject jsonObject = json.get(position);
-            Languages language = jsonObject.getLabel();
-            String label = language.getEn();
+            /*Language languages = jsonObject.getLabel();
+            String label = languages.getEn();
 
             Log.d("LABEL", label);
 
-            mText.setText(label);
+            mText.setText(label);*/
         }
     }
 }

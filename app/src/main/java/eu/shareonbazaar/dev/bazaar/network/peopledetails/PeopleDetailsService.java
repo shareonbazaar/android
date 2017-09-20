@@ -1,6 +1,6 @@
 package eu.shareonbazaar.dev.bazaar.network.peopledetails;
 
-import eu.shareonbazaar.dev.bazaar.model.User;
+import eu.shareonbazaar.dev.bazaar.model.people.User;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

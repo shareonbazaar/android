@@ -8,6 +8,22 @@
     <color name="color_white">#fff</color>
     <color name="edittext_floating">#B0BEC5</color>
     <color name="light_gray">#f2f2f2</color>
-    <color name="divider">#d7d7d7</color>
+    <color name="divider">#80d7d7d7</color>
     <color name="alpha_black">#66000000</color>
+
+
+    <!-- Skill Category Colors -->
+    <string-array name="categoryColors">
+        <item>#311b92</item>
+        <item>#0d47a1</item>
+        <item>#006064</item>
+        <item>#33691e</item>
+        <item>#1b5e20</item>
+        <item>#004d40</item>
+        <item>#827717</item>
+        <item>#999900</item>
+        <item>#e65100</item>
+        <item>#bf360c</item>
+    </string-array>
+
 </resources>

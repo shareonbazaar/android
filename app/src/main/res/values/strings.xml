@@ -48,6 +48,8 @@
     <string name="search_receive">Receive</string>
     <string name="search_exchange">Exchange</string>
     <string name="search_query_hint">Search for skill</string>
+    <string name="search_skill_label">Skill</string>
+    <string name="search_skill_category_label">Categories</string>
     <string name="search_distance_prompt">Distance</string>
     <string name="search_apply_filter">Apply filter</string>
     <string name="dialog_surprise_me">Surprise me!</string>
@@ -77,6 +79,13 @@
     <string name="indicator">Slider Indicator</string>
     <string name="location_label">Location</string>
     <string name="hometown_label">Hometown</string>
+
+    <string name="dummy">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat
+    </string>
 
     <plurals name="skill_count_label">
         <item quantity="zero">skill</item>

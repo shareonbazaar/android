@@ -24,6 +24,7 @@ import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.bookmark.BookmarkFragment;
 import eu.shareonbazaar.dev.bazaar.currentuser.CurrentUserDetailsActivity;
+import eu.shareonbazaar.dev.bazaar.model.currentuser.CurrentUser;
 import eu.shareonbazaar.dev.bazaar.model.login.Authentication;
 import eu.shareonbazaar.dev.bazaar.people.PeopleFragment;
 import eu.shareonbazaar.dev.bazaar.searchfilter.SearchDialog;
@@ -39,8 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private WalletFragment walletFragment;
     private FragmentManager fragmentManager;
 
-    private static final String AUTHENTICATION_OBJECT = "Personal profile";
-    private Authentication mAuth;
+    private CurrentUser mCurrentUser;
 
    Target target;
     private MenuItem menuItem;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         mainActivityPresenter = new MainActivityPresenter(this);
 
         if(savedInstanceState != null){
-            mAuth = savedInstanceState.getParcelable(AUTHENTICATION_OBJECT);
+            mCurrentUser = savedInstanceState.getParcelable(CURRENT_USER);
             showCurrentUserImage();
         }else{
             initializeFragments();
@@ -115,14 +115,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
-    public void initialCurrentUserDetails(Authentication authentication) {
-        mAuth = authentication;
+    public void initializeCurrentUserDetails(CurrentUser currentUser) {
+        mCurrentUser = currentUser;
+        showCurrentUserImage();
     }
 
     @Override
     public void showCurrentUserImage() {
-        String userImageUrl = mAuth.getCurrentUser()
-                .getUserProfile().getUserImageUrl();
+        String userImageUrl = mCurrentUser.getUserProfile().getUserImageUrl();
 
         target = new Target() {
             @Override
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public void showCurrentUserDetailsUi() {
         Intent intent = new Intent(MainActivity.this, CurrentUserDetailsActivity.class);
-        intent.putExtra(CURRENT_USER, mAuth);
+        intent.putExtra(CURRENT_USER, mCurrentUser);
         startActivity(intent);
     }
 
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(AUTHENTICATION_OBJECT, mAuth);
+        outState.putParcelable(CURRENT_USER, mCurrentUser);
     }
 
     @Override

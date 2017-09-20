@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +17,7 @@ import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.adapters.OnBoardingAdapter;
 import eu.shareonbazaar.dev.bazaar.login.LoginActivity;
 import eu.shareonbazaar.dev.bazaar.mainactivity.MainActivity;
-import eu.shareonbazaar.dev.bazaar.signup.RegisterActivity;
+import eu.shareonbazaar.dev.bazaar.signup.SignUpActivity;
 import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
 
 import static eu.shareonbazaar.dev.bazaar.utilities.Constants.TOKEN;
@@ -63,7 +62,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(OnBoardingActivity.this, RegisterActivity.class));
+                startActivity(new Intent(OnBoardingActivity.this, SignUpActivity.class));
                 finish();
             }
         });

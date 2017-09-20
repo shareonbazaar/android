@@ -2,7 +2,6 @@ package eu.shareonbazaar.dev.bazaar.wallet;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,12 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.model.WalletJsonResponse;
-import eu.shareonbazaar.dev.bazaar.network.ConnectionSetup;
-import eu.shareonbazaar.dev.bazaar.network.UserService;
-import eu.shareonbazaar.dev.bazaar.network.wallet.WalletService;
-import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import eu.shareonbazaar.dev.bazaar.model.wallet.Transaction;
 
-public class WalletFragment extends Fragment {
+public class WalletFragment extends Fragment implements WalletContract.View{
 
-    public static final String TOKEN = "TOKEN";
+    private WalletContract.Presenter mPresenter;
+    private WalletPresenter mWalletPresenter;
 
     @BindView(R.id.tv_wallet)
     TextView mJSON;
@@ -35,6 +28,7 @@ public class WalletFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -43,30 +37,29 @@ public class WalletFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
         ButterKnife.bind(this, rootView);
 
+        mWalletPresenter = new WalletPresenter(this);
+        mPresenter.start(getActivity().getApplicationContext());
+
         return rootView;
     }
 
-    private void fetchTransation(){
-        SharedPreference sharedPreference = new SharedPreference(getContext());
-        String token = sharedPreference.retrieveToken(TOKEN);
-
-        //TODO: Check if Token is null or not
-
-        WalletService service = ConnectionSetup.retrofit.create(WalletService.class);
-        service.getTransactions(token)
-                .enqueue(new Callback<ArrayList<WalletJsonResponse>>() {
-
-                    @Override
-                    public void onResponse(Call<ArrayList<WalletJsonResponse>> call,
-                                           Response<ArrayList<WalletJsonResponse>> response) {
-//                        mJSON.setText(response.body());
-                    }
-
-                    @Override
-                    public void onFailure(Call<ArrayList<WalletJsonResponse>> call, Throwable t) {
-                        Log.d("LOG_TAG", t.getMessage());
-                    }
-                });
+    @Override
+    public void setPresenter(WalletContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
+    @Override
+    public void showTransactions(ArrayList<Transaction> transactions) {
+        mJSON.setText(transactions.toString());
+    }
+
+    @Override
+    public void showFilteredTransaction(ArrayList<Transaction> transactions) {
+
+    }
+
+    @Override
+    public void showError(String error) {
+
+    }
 }

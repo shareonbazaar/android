@@ -1,0 +1,165 @@
+TASK eu.shareonbazaar.dev.bazaar id=8
+  ACTIVITY eu.shareonbazaar.dev.bazaar/.mainactivity.MainActivity bd06945 pid=3775
+    Local FragmentActivity 96a028d State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    Active Fragments in 9a57301:
+      #0: PeopleFragment{84275a6 #0 id=0x7f0d00a2}
+        mFragmentId=#7f0d00a2 mContainerId=#7f0d00a2 mTag=null
+        mState=5 mIndex=0 mWho=android:fragment:0 mBackStackNesting=0
+        mAdded=true mRemoving=false mFromLayout=false mInLayout=false
+        mHidden=false mDetached=false mMenuVisible=true mHasMenu=false
+        mRetainInstance=false mRetaining=false mUserVisibleHint=true
+        mFragmentManager=FragmentManager{9a57301 in HostCallbacks{888dbe7}}
+        mHost=android.support.v4.app.FragmentActivity$HostCallbacks@888dbe7
+        mContainer=android.widget.FrameLayout{f03394 V.E...... ........ 0,147-1080,1584 #7f0d00a2 app:id/fl_fragment_container}
+        mView=android.widget.FrameLayout{e753e3d V.E...... ........ 0,0-1080,1437 #7f0d00a1 app:id/user_layout}
+        mInnerView=android.widget.FrameLayout{e753e3d V.E...... ........ 0,0-1080,1437 #7f0d00a1 app:id/user_layout}
+        Child FragmentManager{1104632 in PeopleFragment{84275a6}}:
+          FragmentManager misc state:
+            mHost=android.support.v4.app.FragmentActivity$HostCallbacks@888dbe7
+            mContainer=android.support.v4.app.Fragment$2@5fd4f83
+            mParent=PeopleFragment{84275a6 #0 id=0x7f0d00a2}
+            mCurState=5 mStateSaved=false mDestroyed=false
+    Added Fragments:
+      #0: PeopleFragment{84275a6 #0 id=0x7f0d00a2}
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@888dbe7
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@888dbe7
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.PhoneWindow$DecorView{d66f500 V.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{17c8139 V.E..... ... 0,0-1080,1794}
+          android.view.ViewStub{c78937e G.E..... ... 0,0-0,0 #10203a9 android:id/action_mode_bar_stub}
+          android.widget.FrameLayout{dbb60df V.E..... ... 0,63-1080,1794}
+            android.support.v7.widget.FitWindowsLinearLayout{bc6612c V.E..... ... 0,0-1080,1731 #7f0d0066 app:id/action_bar_root}
+              android.support.v7.widget.ViewStubCompat{91af7f5 G.E..... ... 0,0-0,0 #7f0d0067 app:id/action_mode_bar_stub}
+              android.support.v7.widget.ContentFrameLayout{486698a V.E..... ... 0,0-1080,1731 #1020002 android:id/content}
+                android.widget.LinearLayout{c1f2bfb V.E..... ... 0,0-1080,1731 #7f0d00a1 app:id/user_layout}
+                  android.support.design.widget.CoordinatorLayout{7ce6418 V.E..... ... 0,0-1080,147}
+                    android.support.design.widget.AppBarLayout{6fad9c8 V.E..... ... 0,0-1080,147}
+                      android.support.v7.widget.Toolbar{7f01e71 V.E..... ... 0,0-1080,147 #7f0d00a4 app:id/toolbar}
+                        android.support.v7.widget.AppCompatTextView{6e99456 V.ED.... ... 42,38-208,109}
+                        android.support.v7.widget.ActionMenuView{d2a8cd7 V.E..... ... 826,0-1080,147}
+                          android.support.v7.view.menu.ActionMenuItemView{751a9c4 VFED..CL ... 0,10-127,136 #7f0d00f4 app:id/action_search}
+                          android.support.v7.view.menu.ActionMenuItemView{11730ad VFED..CL ... 127,10-254,136 #7f0d00f5 app:id/action_profile_image}
+                  android.widget.FrameLayout{f03394 V.E..... ... 0,147-1080,1584 #7f0d00a2 app:id/fl_fragment_container}
+                    android.widget.FrameLayout{e753e3d V.E..... ... 0,0-1080,1437 #7f0d00a1 app:id/user_layout}
+                      android.support.v7.widget.RecyclerView{a829fe2 VFED.V.. F.. 0,0-1080,1437 #7f0d00c2 app:id/user_list}
+                        android.support.constraint.ConstraintLayout{1211f73 V.E...C. ... 0,0-1080,173}
+                          android.support.v7.widget.AppCompatImageView{b5e2a2f V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{8a19e30 V.ED.... ... 195,21-470,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{4232aa9 V.ED.... ... 195,92-453,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{1aed82e V.ED.... ... 975,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{ee43fcf V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{bba6d5c V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{cdac865 V.E...C. ... 0,173-1080,346}
+                          android.support.v7.widget.AppCompatImageView{857f1a V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{554493a V.ED.... ... 195,21-567,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{f09eb V.ED.... ... 195,92-537,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{22f0348 V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{2b485e1 V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{4adbf06 V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{2d259c7 V.E...C. ... 0,346-1080,519}
+                          android.support.v7.widget.AppCompatImageView{b86dc28 V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{1d50bf4 V.ED.... ... 195,21-537,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{4129f1d V.ED.... ... 195,92-289,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{5d6c592 V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{d90cb63 V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{630f360 V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{93f1019 V.E...C. ... 0,519-1080,692}
+                          android.support.v7.widget.AppCompatImageView{df8a7c3 V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{317a8de V.ED.... ... 195,21-567,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{3ababf V.ED.... ... 195,92-314,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{ca1e58c V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{b2794d5 V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{f174ea V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{f6a43db V.E...C. ... 0,692-1080,865}
+                          android.support.v7.widget.AppCompatImageView{d3cf8be V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{74dce78 V.ED.... ... 195,21-388,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{9d9a951 V.ED.... ... 195,92-314,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{8e9f5b6 V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{53f42b7 V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{2cd5a24 V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{ebe898d V.E...C. ... 0,865-1080,1038}
+                          android.support.v7.widget.AppCompatImageView{3bc686c V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{517b742 V.ED.... ... 195,21-668,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{3fb5353 V.ED.... ... 195,92-496,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{a97f490 V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{6973189 V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{86e058e V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{65dd1af V.E...C. ... 0,1038-1080,1211}
+                          android.support.v7.widget.AppCompatImageView{83d9f58 V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{82fc9bc V.ED.... ... 195,21-487,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{f385d45 V.ED.... ... 195,92-289,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{fc8ec9a V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{9bfd9cb V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{90dc5a8 V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{50688c1 V.E...C. ... 0,1211-1080,1384}
+                          android.support.v7.widget.AppCompatImageView{9927117 V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{7b93866 V.ED.... ... 195,21-552,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{df047a7 V.ED.... ... 195,92-453,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{74d9454 V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{c31effd V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{31074f2 V.ED.... ... 32,149-1048,152}
+                        android.support.constraint.ConstraintLayout{6cfb743 V.E...C. ... 0,1384-1080,1557}
+                          android.support.v7.widget.AppCompatImageView{ed60122 V.ED.... ... 32,21-163,152 #7f0d00a7 app:id/user_picture}
+                          android.support.v7.widget.AppCompatTextView{119a1c0 V.ED.... ... 195,21-447,92 #7f0d00a9 app:id/user_name}
+                          android.support.v7.widget.AppCompatTextView{1b28ef9 V.ED.... ... 195,92-453,143 #7f0d00f0 app:id/user_location}
+                          android.support.v7.widget.AppCompatTextView{e2cee3e V.ED.... ... 1001,21-1027,84 #7f0d00ac app:id/tv_skill_count}
+                          android.support.v7.widget.AppCompatTextView{bac849f V.ED.... ... 953,95-1037,146 #7f0d00f1 app:id/tv_skill_count_label}
+                          android.view.View{ad719ec V.ED.... ... 32,149-1048,152}
+                      android.widget.LinearLayout{421b5 I.E..... ... 0,634-1080,802 #7f0d00c3 app:id/ll_network_error}
+                        android.support.v7.widget.AppCompatTextView{b05b04a V.ED.... ... 0,0-1080,71 #7f0d00c4 app:id/tv_network_error_message}
+                        android.support.v7.widget.AppCompatTextView{5ecbbb V.ED..C. ... 479,97-600,168 #7f0d00c5 app:id/tv_retry}
+                      android.widget.ProgressBar{811e8d8 I.ED.... ... 485,663-595,773 #7f0d00c6 app:id/pb_loading_indicator}
+                  android.support.design.widget.BottomNavigationView{3a22431 V.E..... ... 0,1584-1080,1731 #7f0d00a3 app:id/navigation}
+                    android.support.design.internal.BottomNavigationMenuView{1f68716 V.E..... ... 0,0-1080,147}
+                      android.support.design.internal.BottomNavigationItemView{4246897 V.E...C. ... 0,0-360,147 #7f0d00f6 app:id/navigation_people}
+                        android.support.v7.widget.AppCompatImageView{728ba84 V.ED.... ... 148,16-211,79 #7f0d0050 app:id/icon}
+                        android.support.design.internal.BaselineLayout{b43d26d V.E..... ... 123,81-237,147}
+                          android.support.v7.widget.AppCompatTextView{34bfea2 I.ED.... ... 8,6-106,49 #7f0d00ae app:id/smallLabel}
+                          android.support.v7.widget.AppCompatTextView{23cf733 V.ED.... ... 0,0-114,51 #7f0d00af app:id/largeLabel}
+                      android.support.design.internal.BottomNavigationItemView{bb8faf0 V.E...C. ... 360,0-720,147 #7f0d00f7 app:id/navigation_wallet}
+                        android.support.v7.widget.AppCompatImageView{fd82869 V.ED.... ... 148,21-211,84 #7f0d0050 app:id/icon}
+                        android.support.design.internal.BaselineLayout{58f62ee V.E..... ... 129,81-231,147}
+                          android.support.v7.widget.AppCompatTextView{45d38f V.ED.... ... 7,6-94,49 #7f0d00ae app:id/smallLabel}
+                          android.support.v7.widget.AppCompatTextView{3cad61c I.ED.... ... 0,0-102,51 #7f0d00af app:id/largeLabel}
+                      android.support.design.internal.BottomNavigationItemView{41e225 V.E...C. ... 720,0-1080,147 #7f0d00f8 app:id/navigation_bookmarks}
+                        android.support.v7.widget.AppCompatImageView{c92bffa V.ED.... ... 148,21-211,84 #7f0d0050 app:id/icon}
+                        android.support.design.internal.BaselineLayout{65619ab V.E..... ... 86,81-273,147}
+                          android.support.v7.widget.AppCompatTextView{3bd3808 V.ED.... ... 13,6-174,49 #7f0d00ae app:id/smallLabel}
+                          android.support.v7.widget.AppCompatTextView{cd37ba1 I.ED.... ... 0,0-187,51 #7f0d00af app:id/largeLabel}
+        android.view.View{53ce1c6 V.ED.... ... 0,1794-1080,1920 #1020030 android:id/navigationBarBackground}
+        android.view.View{cdaa587 V.ED.... ... 0,0-1080,63 #102002f android:id/statusBarBackground}
+
+  ACTIVITY eu.shareonbazaar.dev.bazaar/.onboarding.OnBoardingActivity 7d5d1b6 pid=3775
+    Local FragmentActivity 4d229ad State:
+      mCreated=truemResumed=false mStopped=true mReallyStopped=true
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@4f1ccb4
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@4f1ccb4
+      mCurState=2 mStateSaved=true mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.PhoneWindow$DecorView{e8b30dd I.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{2155452 V.E..... ... 0,0-1080,1794}
+          android.view.ViewStub{c321323 G.E..... ... 0,0-0,0 #10203a9 android:id/action_mode_bar_stub}
+          android.widget.FrameLayout{3390020 V.E..... ... 0,0-1080,1794}
+            android.support.v7.widget.FitWindowsLinearLayout{60efdd9 V.E..... ... 0,0-1080,1794 #7f0d0066 app:id/action_bar_root}
+              android.support.v7.widget.ViewStubCompat{490639e G.E..... ... 0,0-0,0 #7f0d0067 app:id/action_mode_bar_stub}
+              android.support.v7.widget.ContentFrameLayout{a08be7f V.E..... ... 0,0-1080,1794 #1020002 android:id/content}
+                android.support.design.widget.CoordinatorLayout{4fdfe4c V.ED.... ... 0,0-1080,1794 #7f0d0087 app:id/activity_onboarding}
+                  android.support.v4.view.ViewPager{b5c2ab6 VFED.... ... 0,63-1080,1715 #7f0d0088 app:id/vp_section_container}
+                  android.widget.LinearLayout{a05d3b7 V.E..... ... 0,1321-1080,1715}
+                    android.widget.LinearLayout{e689e95 V.E..... ... 477,53-603,74}
+                      android.support.v7.widget.AppCompatImageView{f1b1baa V.ED.... ... 0,0-21,21 #7f0d0089 app:id/intro_indicator_0}
+                      android.support.v7.widget.AppCompatImageView{74c39b V.ED.... ... 42,0-63,21 #7f0d008a app:id/intro_indicator_1}
+                      android.support.v7.widget.AppCompatImageView{a32b338 VFED..C. ... 84,0-105,21 #7f0d008b app:id/intro_indicator_2}
+                      android.support.v7.widget.AppCompatImageView{f818f11 VFED..C. ... 105,0-126,21 #7f0d008c app:id/intro_indicator_3}
+                    android.support.v7.widget.AppCompatButton{be74876 VFED..C. ... 53,153-1027,288 #7f0d008d app:id/onboarding_signup}
+                    android.widget.LinearLayout{ad1fe77 V.E..... ... 53,314-1027,385 #7f0d008e app:id/onboarding_signin_prompt}
+                      android.support.v7.widget.AppCompatTextView{dfbcae4 V.ED.... ... 0,0-602,71}
+                      android.support.v7.widget.AppCompatTextView{c5f0b4d V.ED.... ... 628,0-786,71 #7f0d008f app:id/onboarding_signin}
+        android.view.View{4777602 V.ED.... ... 0,1794-1080,1920 #1020030 android:id/navigationBarBackground}
+        android.view.View{45e0b13 V.ED.... ... 0,0-1080,63 #102002f android:id/statusBarBackground}
