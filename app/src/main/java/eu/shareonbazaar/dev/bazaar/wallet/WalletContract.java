@@ -16,7 +16,7 @@ public interface WalletContract {
     interface Presenter extends BasePresenter {
         void fetchTransactions();
         void validateTransactions(ArrayList<Transaction> transactions);
-        void handleError(String error);
+        void handleError(Throwable error);
         Transaction filterTransaction();
     }
 }

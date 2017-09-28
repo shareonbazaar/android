@@ -2,10 +2,11 @@ package eu.shareonbazaar.dev.bazaar.wallet;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -14,13 +15,14 @@ import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.model.wallet.Transaction;
 
-public class WalletFragment extends Fragment implements WalletContract.View{
+public class WalletFragment extends Fragment implements WalletContract.View,
+        WalletAdapter.WalletAdapterClickListener{
 
     private WalletContract.Presenter mPresenter;
     private WalletPresenter mWalletPresenter;
 
-    @BindView(R.id.tv_wallet)
-    TextView mJSON;
+    @BindView(R.id.rv_transaction_list)
+    RecyclerView mTransactions;
 
     public WalletFragment() {
     }
@@ -37,6 +39,9 @@ public class WalletFragment extends Fragment implements WalletContract.View{
         View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
         ButterKnife.bind(this, rootView);
 
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mTransactions.setLayoutManager(mLayoutManager);
+
         mWalletPresenter = new WalletPresenter(this);
         mPresenter.start(getActivity().getApplicationContext());
 
@@ -50,7 +55,9 @@ public class WalletFragment extends Fragment implements WalletContract.View{
 
     @Override
     public void showTransactions(ArrayList<Transaction> transactions) {
-        mJSON.setText(transactions.toString());
+        WalletAdapter walletAdapter = new WalletAdapter(this);
+        walletAdapter.setTransaction(transactions);
+        mTransactions.setAdapter(walletAdapter);
     }
 
     @Override
@@ -60,6 +67,11 @@ public class WalletFragment extends Fragment implements WalletContract.View{
 
     @Override
     public void showError(String error) {
+
+    }
+
+    @Override
+    public void onItemClicked(Transaction transaction) {
 
     }
 }

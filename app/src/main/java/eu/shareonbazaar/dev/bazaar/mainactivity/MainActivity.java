@@ -25,7 +25,6 @@ import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.bookmark.BookmarkFragment;
 import eu.shareonbazaar.dev.bazaar.currentuser.CurrentUserDetailsActivity;
 import eu.shareonbazaar.dev.bazaar.model.currentuser.CurrentUser;
-import eu.shareonbazaar.dev.bazaar.model.login.Authentication;
 import eu.shareonbazaar.dev.bazaar.people.PeopleFragment;
 import eu.shareonbazaar.dev.bazaar.searchfilter.SearchDialog;
 import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;

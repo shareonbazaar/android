@@ -15,29 +15,29 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import eu.shareonbazaar.dev.bazaar.R;
-import eu.shareonbazaar.dev.bazaar.adapters.UserAdapter;
 import eu.shareonbazaar.dev.bazaar.model.people.PeopleJSON;
 import eu.shareonbazaar.dev.bazaar.model.people.User;
 import eu.shareonbazaar.dev.bazaar.network.ConnectionSetup;
-import eu.shareonbazaar.dev.bazaar.network.people.PeopleService;
 import eu.shareonbazaar.dev.bazaar.peopledetails.PeopleDetailsActivity;
 import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static eu.shareonbazaar.dev.bazaar.utilities.Constants.TOKEN;
 
-public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterClickListener{
+public class PeopleFragment extends Fragment implements PeopleAdapter.UserAdapterClickListener{
 
     private RecyclerView recyclerView;
     private LinearLayout networkErrorContainer;
     private ProgressBar loadingIndicator;
-    private UserAdapter recyclerAdapter;
+    private PeopleAdapter recyclerAdapter;
     private FloatingActionButton fab;
 
     public PeopleFragment() {
@@ -46,13 +46,6 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    private void loadUsers(PeopleJSON peopleJSON) {
-        ArrayList<User> users = peopleJSON.getUsers();
-        recyclerAdapter = new UserAdapter(this);
-        recyclerAdapter.setUserData(users);
-        recyclerView.setAdapter(recyclerAdapter);
     }
 
     @Override
@@ -99,23 +92,22 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
         //TODO: Check if Token is null or not
 
         PeopleService service = ConnectionSetup.retrofit.create(PeopleService.class);
-        service.getUsers(token)
-                .enqueue(new Callback<PeopleJSON>() {
 
-                    @Override
-                    public void onResponse(Call<PeopleJSON> call, Response<PeopleJSON> response) {
-                        loadUsers(response.body());
-                        hideProgressBar();
-//                        showFab();
-                    }
-
-                    @Override
-                    public void onFailure(Call<PeopleJSON> call, Throwable t) {
-                        showNetworkError();
-                        Log.d("LOG_TAG", t.getMessage());
-                    }
-                });
+        Disposable disposable = service.getUsers(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::loadUsers, this::showNetworkError);
     }
+
+    private void loadUsers(PeopleJSON peopleJSON) {
+        hideProgressBar();
+
+        ArrayList<User> users = peopleJSON.getUsers();
+        recyclerAdapter = new PeopleAdapter(this);
+        recyclerAdapter.setUserData(users);
+        recyclerView.setAdapter(recyclerAdapter);
+    }
+
 //    private void hideFab(){
 //        fab.setVisibility(View.INVISIBLE);
 //    }
@@ -133,7 +125,7 @@ public class PeopleFragment extends Fragment implements UserAdapter.UserAdapterC
 //        hideFab();
     }
 
-    private void showNetworkError(){
+    private void showNetworkError(Throwable throwable){
         networkErrorContainer.setVisibility(View.VISIBLE);
         hideProgressBar();
 //        hideFab();

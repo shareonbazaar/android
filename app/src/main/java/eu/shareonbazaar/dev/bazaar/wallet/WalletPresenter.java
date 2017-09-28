@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import eu.shareonbazaar.dev.bazaar.model.wallet.Transaction;
 import eu.shareonbazaar.dev.bazaar.network.ConnectionSetup;
 import eu.shareonbazaar.dev.bazaar.utilities.SharedPreference;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +43,7 @@ public class WalletPresenter implements WalletContract.Presenter{
         //TODO: Check if Token is null or not
 
         WalletService service = ConnectionSetup.retrofit.create(WalletService.class);
-        service.getTransactions(token)
+        /*service.getTransactions(token)
                 .enqueue(new Callback<ArrayList<Transaction>>() {
 
                     @Override
@@ -53,23 +57,27 @@ public class WalletPresenter implements WalletContract.Presenter{
                         Log.d("ERROR: ", t.toString());
                         handleError("Could not fetch transactions.");
                     }
-                });
+                });*/
+        Disposable disposable = service.getTransactions(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::validateTransactions, this::handleError);
     }
 
     @Override
     public void validateTransactions(ArrayList<Transaction> transactions) {
-        Log.d("Transaction", transactions.size() + ">");
         if(transactions.size() <= 0){
             // TODO: handle empty transaction
-            handleError("Empty transaction");
+            // handleError("Empty transaction");
+            Log.d("TRANS", "Empty transaction");
         }else {
             mWalletView.showTransactions(transactions);
         }
     }
 
     @Override
-    public void handleError(String error) {
-        Log.d("ERROR", error);
+    public void handleError(Throwable error) {
+        Log.d("ERROR", error.toString());
     }
 
     @Override

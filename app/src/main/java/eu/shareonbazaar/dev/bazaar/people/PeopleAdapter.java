@@ -1,4 +1,4 @@
-package eu.shareonbazaar.dev.bazaar.adapters;
+package eu.shareonbazaar.dev.bazaar.people;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -20,13 +20,13 @@ import eu.shareonbazaar.dev.bazaar.model.people.User;
 import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
 
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserAdapterViewHolder> {
+public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.UserAdapterViewHolder> {
 
     private static UserAdapterClickListener mClickListener;
     private ArrayList<User> mUsers;
     private Context context;
 
-    public UserAdapter(UserAdapterClickListener clickListener) {
+    public PeopleAdapter(UserAdapterClickListener clickListener) {
         mClickListener = clickListener;
     }
 
