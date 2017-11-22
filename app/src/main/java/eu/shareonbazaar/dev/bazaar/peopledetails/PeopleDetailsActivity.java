@@ -2,17 +2,18 @@ package eu.shareonbazaar.dev.bazaar.peopledetails;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import eu.shareonbazaar.dev.bazaar.R;
 import eu.shareonbazaar.dev.bazaar.adapters.CustomJsonAdapter;
+import eu.shareonbazaar.dev.bazaar.adapters.ViewPagerAdapter;
 import eu.shareonbazaar.dev.bazaar.model.people.User;
 import eu.shareonbazaar.dev.bazaar.model.skill.Skill;
 import eu.shareonbazaar.dev.bazaar.utilities.RoundImageTransformation;
@@ -35,12 +37,16 @@ public class PeopleDetailsActivity extends AppCompatActivity {
     TextView userNameTextView;
     @BindView(R.id.tv_profile_location)
     TextView locationTextView;
-    @BindView(R.id.tv_profile_about)
-    TextView aboutMeTextView;
-    @BindView(R.id.rv_skills_list)
-    RecyclerView skillsList;
-    @BindView(R.id.rv_interest_list)
-    RecyclerView interestList;
+    @BindView(R.id.vp_bio_review)
+    ViewPager viewPager;
+    @BindView(R.id.tl_bio_review)
+    TabLayout tabLayout;
+//    @BindView(R.id.tv_profile_about)
+//    TextView aboutMeTextView;
+//    @BindView(R.id.rv_skills_list)
+//    RecyclerView skillsList;
+//    @BindView(R.id.rv_interest_list)
+//    RecyclerView interestList;
 
     private CustomJsonAdapter customJsonAdapter;
     public static final String TOKEN = "TOKEN";
@@ -53,7 +59,7 @@ public class PeopleDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        skillsList.setHasFixedSize(true);
+//        skillsList.setHasFixedSize(true);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -61,20 +67,17 @@ public class PeopleDetailsActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(false);
         }
 
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
         Intent parentIntent = getIntent();
         User user = parentIntent.getExtras().getParcelable("User");
         initView(user);
         Toast.makeText(getApplicationContext(), "Api needed here", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
-
     private void initView(User user){
-        String emptyFieldPlaceholder = "Not set";
+        String emptyFieldPlaceholder = "Not available";
         if (user != null) {
             String imageUrl = user.getPicture();
             Picasso.with(getApplicationContext())
@@ -90,7 +93,7 @@ public class PeopleDetailsActivity extends AppCompatActivity {
             String hometown = (user.getHometown().length() > 0) ? user.getHometown() : emptyFieldPlaceholder;
             // hometownTextView.setText(hometown);
             String aboutMe = (user.getAboutMe() != null) ? user.getAboutMe() : emptyFieldPlaceholder;
-            aboutMeTextView.setText(aboutMe);
+//            aboutMeTextView.setText(aboutMe);
 
             ArrayList<Skill> skills = user.getSkills();
             Log.d("SIZE", ">" + user.getSkills().size());
@@ -100,5 +103,25 @@ public class PeopleDetailsActivity extends AppCompatActivity {
             skillsList.setLayoutManager(layoutManager);
             skillsList.setAdapter(customJsonAdapter);*/
         }
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new AboutMeFragment(), "About Me");
+        adapter.addFragment(new ReviewFragment(), "Reviews");
+        viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.people_details_menu, menu);
+        return true;
     }
 }

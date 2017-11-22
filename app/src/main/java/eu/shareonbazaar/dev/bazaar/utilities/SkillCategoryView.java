@@ -30,7 +30,7 @@ public class SkillCategoryView extends TextView {
         int myCol = Color.parseColor(colors[dangerLevel - 1]);
 
         res.get
-        Drawable mDrawable = res.getDrawable(R.drawable.circle,this.getContext().getTheme());
+        Drawable mDrawable = res.getDrawable(R.drawable.background_label,this.getContext().getTheme());
         mDrawable.setColorFilter(myCol, PorterDuff.Mode.SRC);
 
         this.setBackground(mDrawable);

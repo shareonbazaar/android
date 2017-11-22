@@ -62,6 +62,9 @@ public class OnBoardingFragment extends Fragment {
         int imageResource = imageResources[getArguments().getInt(ARG_SECTION_NUMBER) - 1];
         Picasso.with(getActivity())
                 .load(imageResource)
+                .fit()
+                /*.resize(180, 180)
+                .onlyScaleDown()*/
                 .into(mBoardImage);
 
         return rootView;

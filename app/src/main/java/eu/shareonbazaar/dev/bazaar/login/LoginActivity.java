@@ -42,6 +42,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private LoginPresenter loginPresenter;
     private LoginContract.Presenter mPresenter;
 
+    private LoadingFragment dialog;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,13 +101,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
+    public void hideLoadingProgress() {
+        if(dialog != null){
+            dialog.dismiss();
+        }
+    }
+
+    @Override
     public void displayLoadingProgress() {
         mErrorMessage.setVisibility(View.INVISIBLE);
 
         Bundle bundle = new Bundle();
         bundle.putString(LOADING_DIALOG_TEXT, "Logging in...");
 
-        LoadingFragment dialog = new LoadingFragment();
+        dialog = new LoadingFragment();
         dialog.setArguments(bundle);
         dialog.show(getSupportFragmentManager(), "LoadingFragment");
     }

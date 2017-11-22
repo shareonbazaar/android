@@ -5,6 +5,7 @@ import android.content.Context;
 import eu.shareonbazaar.dev.bazaar.base.BasePresenter;
 import eu.shareonbazaar.dev.bazaar.base.BaseView;
 import eu.shareonbazaar.dev.bazaar.model.login.Authentication;
+import retrofit2.Response;
 
 public interface LoginContract {
 
@@ -13,6 +14,7 @@ public interface LoginContract {
         void displayEmailError(String error);
         void displayPasswordError(String error);
         void displayAuthenticationError(String error);
+        void hideLoadingProgress();
         void displayLoadingProgress();
         void showAllUsersUi();
         void showSignupUi();
@@ -25,7 +27,7 @@ public interface LoginContract {
         void loginWithEmail(String email, String password);
         void loginWithGooglePlus();
         void loginWithFacebook();
-        void authenticateUser(Authentication authentication);
+        void authenticateUser(Response<Authentication> response);
         void connectionError();
     }
 }

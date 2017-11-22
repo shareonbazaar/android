@@ -12,8 +12,8 @@
     <color name="alpha_black">#66000000</color>
 
 
-    <!-- Skill Category Colors -->
-    <string-array name="categoryColors">
+    <!-- Skill and Interest label Colors -->
+    <string-array name="labelColors">
         <item>#311b92</item>
         <item>#0d47a1</item>
         <item>#006064</item>

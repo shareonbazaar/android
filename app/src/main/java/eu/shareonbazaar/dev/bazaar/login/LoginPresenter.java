@@ -2,6 +2,7 @@ package eu.shareonbazaar.dev.bazaar.login;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import eu.shareonbazaar.dev.bazaar.model.login.Authentication;
 import eu.shareonbazaar.dev.bazaar.network.ConnectionSetup;
@@ -46,7 +47,7 @@ public class LoginPresenter implements LoginContract.Presenter{
                 .enqueue(new Callback<Authentication>() {
                     @Override
                     public void onResponse(Call<Authentication> call, Response<Authentication> response) {
-                        authenticateUser(response.body());
+                        authenticateUser(response);
                     }
 
                     @Override
@@ -67,21 +68,23 @@ public class LoginPresenter implements LoginContract.Presenter{
     }
 
     @Override
-    public void authenticateUser(Authentication authentication) {
-        int status = authentication.getStatus();
-        String error = authentication.getError();
-        String token = authentication.getToken();
-
+    public void authenticateUser(Response<Authentication> response) {
+        int status = response.code();
 
         if(status == 200){
+            Authentication authentication = response.body();
             SharedPreference sharedPreference = new SharedPreference(mContext);
+            String token = authentication != null ? authentication.getToken() : null;
             sharedPreference.saveToken(TOKEN, token);
 
             //TODO: Save user data
             //loginSuccess(authentication);
             mLoginView.showAllUsersUi();
         }else{
-            //Snackbar.make(mainLayout, error, Snackbar.LENGTH_LONG).show();
+            String error = "Either email or password is incorrect";
+            Log.d("Error", error);
+            mLoginView.hideLoadingProgress();
+            mLoginView.displayAuthenticationError(error);
         }
     }
 

@@ -38,6 +38,6 @@ public class RoundImageTransformation implements Transformation {
 
     @Override
     public String key() {
-        return "circle";
+        return "background_label";
     }
 }

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);

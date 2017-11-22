@@ -87,7 +87,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.UserAdapte
         void bindView(int position){
             User user = mUsers.get(position);
             String userName = user.getName();
-            String userLocation = (user.getLocation().length() > 0 ) ? user.getLocation() : "Not set";
+            String userLocation = (user.getLocation().length() > 0 ) ? user.getLocation() : "Not available";
             String userImageUrl = user.getPicture();
             int skillCount = user.getSkills().size();
             String skillCountLabel = itemView.getResources()

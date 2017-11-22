@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,20 +58,14 @@ public class OnBoardingActivity extends AppCompatActivity {
     }
 
     private void initializeViews(){
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(OnBoardingActivity.this, SignUpActivity.class));
-                finish();
-            }
+        signup.setOnClickListener(v -> {
+            startActivity(new Intent(OnBoardingActivity.this, SignUpActivity.class));
+            finish();
         });
 
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(OnBoardingActivity.this, LoginActivity.class));
-                finish();
-            }
+        signin.setOnClickListener(v -> {
+            startActivity(new Intent(OnBoardingActivity.this, LoginActivity.class));
+            finish();
         });
 
         OnBoardingAdapter OnBoardingAdapter= new OnBoardingAdapter(getSupportFragmentManager());
@@ -112,14 +105,11 @@ public class OnBoardingActivity extends AppCompatActivity {
     }
 
     private void addPageTransformer(){
-        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-                // page.setRotation(position * 12);
-                final float normalizedPosition = Math.abs(Math.abs(position) - 1);
-                page.setScaleX(normalizedPosition / 2 + 0.5f);
-                page.setScaleY(normalizedPosition / 2 + 0.5f);
-            }
+        mViewPager.setPageTransformer(false, (page, position) -> {
+            // page.setRotation(position * 12);
+            final float normalizedPosition = Math.abs(Math.abs(position) - 1);
+            page.setScaleX(normalizedPosition / 2 + 0.5f);
+            page.setScaleY(normalizedPosition / 2 + 0.5f);
         });
     }
 

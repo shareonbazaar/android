@@ -36,7 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/retry"
-            android:textColor="@color/colorPrimaryDark"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
             android:textSize="20sp"/>
 
     </LinearLayout>
